@@ -1,7 +1,26 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./Pages/Home";
+import Listing from "./Pages/Listing";
+import Property from "./Pages/Property";
+import Booking from "./Pages/Booking";
+import Favourites from "./Pages/Favourites";
+import Footer from "./components/Footer";
+
 const App = () => {
   return (
     <div>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/listing" element={<Listing />} />
+          <Route path="/addproperty" element={<Property />} />
+          <Route path="/booking" element={<Booking />} />
+          <Route path="/favourites" element={<Favourites />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
 };
