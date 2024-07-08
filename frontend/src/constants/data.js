@@ -12,14 +12,6 @@ import blogtwo from "../assets/blog2.jpg";
 import blogthree from "../assets/blog3.jpg";
 import blogfour from "../assets/blog4.jpg";
 
-// import {
-//   FaFacebook,
-//   FaInstagram,
-//   FaTwitter,
-//   FaLinkedin,
-//   FaYoutube,
-// } from "react-icons/fa6";
-
 export const PROPERTIES = [
   {
     title: "Tranquil Terrace Haven",
@@ -27,7 +19,7 @@ export const PROPERTIES = [
     category: "Cottage",
     address: "Via Room 21",
     country: "Pakistan",
-    city: "Lahore",
+    city: "Multan",
     area: "450",
     price: "450",
     description: "Charming bungalow with modern amenities and scenic views.",
@@ -189,3 +181,43 @@ export const BLOGS = [
     category: "Villa",
   },
 ];
+
+export const FOOTER_LINK = [
+  {
+    title: "Learn More",
+    links: [
+      "About Us",
+      "Latest Items",
+      "Hot Offers",
+      "Popular Residence",
+      "FAQ",
+      "Privacy Policy",
+    ],
+  },
+  {
+    title: "Our Community",
+    links: ["Terms and Conditions", "Special Offers", "Customer Reviews"],
+  },
+];
+
+export const FOOTER_CONTACT_INFO = {
+  title: "Contact Info",
+  links: [
+    { label: "Email", value: "sadammuneer390@gmail.com" },
+    { label: "Phone", value: "+923044561544" },
+    {
+      label: "Address",
+      value: "Office 43 crystal plaza ketchahry",
+    },
+  ],
+};
+export const SOCIALS = {
+  title: "Socials",
+  links: [
+    { id: 1 },
+    { id: 2, url: "https://www.instagram.com" },
+    { id: 3, url: "https://www.twitter.com" },
+    { id: 4, url: "https://www.linkedin.com" },
+    { id: 5, url: "https://www.youtube.com" },
+  ],
+};
