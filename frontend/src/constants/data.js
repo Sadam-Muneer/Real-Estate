@@ -28,6 +28,7 @@ export const PROPERTIES = [
       bathroom: "2",
       parking: "1",
     },
+    listingType: "Buy",
   },
   {
     title: "Sunset Villa",
@@ -44,6 +45,7 @@ export const PROPERTIES = [
       bathroom: "4",
       parking: "2",
     },
+    listingType: "Rent",
   },
   {
     title: "Urban Retreat",
@@ -60,6 +62,7 @@ export const PROPERTIES = [
       bathroom: "3",
       parking: "1",
     },
+    listingType: "Rent",
   },
   {
     title: "Green Garden House",
@@ -76,6 +79,7 @@ export const PROPERTIES = [
       bathroom: "3",
       parking: "2",
     },
+    listingType: "Sell",
   },
   {
     title: "Elegant Estate",
@@ -92,6 +96,7 @@ export const PROPERTIES = [
       bathroom: "5",
       parking: "3",
     },
+    listingType: "Sell",
   },
   {
     title: "Comfort Cottage",
@@ -108,6 +113,7 @@ export const PROPERTIES = [
       bathroom: "2",
       parking: "1",
     },
+    listingType: "Sell",
   },
   {
     title: "Luxury Living House",
@@ -124,6 +130,7 @@ export const PROPERTIES = [
       bathroom: "4",
       parking: "2",
     },
+    listingType: "Buy",
   },
   {
     title: "Family Friendly Home",
@@ -140,6 +147,7 @@ export const PROPERTIES = [
       bathroom: "3",
       parking: "1",
     },
+    listingType: "Rent",
   },
   {
     title: "Modern Marvel",
@@ -156,6 +164,7 @@ export const PROPERTIES = [
       bathroom: "4",
       parking: "2",
     },
+    listingType: "Rent",
   },
 ];
 
