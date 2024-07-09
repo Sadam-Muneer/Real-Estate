@@ -5,16 +5,13 @@ import Searchbar from "../components/Searchbar";
 
 const Properties = () => {
   const [category, setCategory] = useState("all");
-
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
   };
-
   const filteredProperties = PROPERTIES.filter((property) => {
     if (category === "all") return true;
     return property.listingType === category;
   });
-
   return (
     <main className="max-padd-container my-[99px]">
       <div className="max-padd-container py-10 xl:py-22  rounded-3xl">
@@ -57,5 +54,4 @@ const Properties = () => {
     </main>
   );
 };
-
 export default Properties;

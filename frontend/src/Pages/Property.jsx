@@ -1,6 +1,6 @@
 const Property = () => {
   return (
-    <div>
+    <div className="max-padd-container py-16 xl:py-28">
       <h1>Property</h1>
     </div>
   );

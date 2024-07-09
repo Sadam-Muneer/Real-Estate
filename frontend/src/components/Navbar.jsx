@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { MdAddHome, MdHomeWork, MdPermContactCalendar } from "react-icons/md";
+import { MdAddHome, MdHomeWork } from "react-icons/md";
 import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
+import { MdPerson } from "react-icons/md";
 
 const Navbar = ({ containerStyles, closeMenu }) => {
   return (
@@ -18,7 +19,6 @@ const Navbar = ({ containerStyles, closeMenu }) => {
         <MdHomeWork />
         <div>Home</div>
       </NavLink>
-
       <NavLink
         to="/listing"
         className={({ isActive }) =>
@@ -31,19 +31,25 @@ const Navbar = ({ containerStyles, closeMenu }) => {
         <RiCheckboxMultipleBlankFill />
         <div>Listing</div>
       </NavLink>
-
       <NavLink
-        to="mailto:sadammuneer390@gmail.com"
-        className="flexCenter gap-x-1 rounded-full px-2 py-1 cursor-pointer "
+        to="/agent"
+        className={({ isActive }) =>
+          isActive
+            ? "active-link flexCenter gap-x-1 rounded-full px-2 py-1"
+            : "flexCenter gap-x-1 rounded-full px-2 py-1 "
+        }
         onClick={closeMenu}
       >
-        <MdPermContactCalendar />
-        <div>Contact</div>
+        <MdPerson />
+        <div>Agent</div>
       </NavLink>
-
       <NavLink
         to="/addproperty"
-        className="flexCenter gap-x-1 rounded-full px-2 py-1 cursor-pointer "
+        className={({ isActive }) =>
+          isActive
+            ? "active-link flexCenter gap-x-1 rounded-full px-2 py-1"
+            : "flexCenter gap-x-1 rounded-full px-2 py-1 "
+        }
         onClick={closeMenu}
       >
         <MdAddHome />
@@ -52,10 +58,8 @@ const Navbar = ({ containerStyles, closeMenu }) => {
     </nav>
   );
 };
-
 Navbar.propTypes = {
   containerStyles: PropTypes.string.isRequired,
   closeMenu: PropTypes.func.isRequired,
 };
-
 export default Navbar;

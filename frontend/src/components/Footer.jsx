@@ -98,12 +98,19 @@ const Footer = () => {
                       <FaLinkedin />
                     </Link>
                   </li>
+
                   {SOCIALS.links.map((link) => (
                     <li key={link.id} className="text-xl">
                       <Link to={link.url}>{link.icon}</Link>
                     </li>
                   ))}
                 </ul>
+                <Link
+                  className="btn-secondary rounded-full relative ring-[0.30rem]"
+                  to="mailto:sadammuneer390@gmail.com"
+                >
+                  Contact via Email
+                </Link>
               </FooterColumn>
             </div>
           </div>
