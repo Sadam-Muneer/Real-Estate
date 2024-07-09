@@ -13,3 +13,33 @@ export const createUser = asyncHandler(async (req, res) => {
     });
   } else res.status(201).send({ message: "User Alreday Exist" });
 });
+
+// to book a visit to resident
+
+export const bookVisit = asyncHandler(async (req, res) => {
+  const { email, date } = req.body;
+  const { id } = req.params;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { bookedVisits: true },
+    });
+
+    if (user.bookedVisits.some((visit) => visit.id === id)) {
+      return res
+        .status(400)
+        .json({ message: "This Residency is Already Booked By You" });
+    }
+    await prisma.user.update({
+      where: { email },
+      data: {
+        bookedVisits: { push: { id, date } },
+      },
+    });
+    res.send("Your visit is booked successfully");
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Internal server error", details: error.message });
+  }
+});

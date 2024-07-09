@@ -13,7 +13,6 @@ export const createResidency = asyncHandler(async (req, res) => {
     image,
     userEmail,
   } = req.body.data;
-
   try {
     let user = await prisma.user.findUnique({
       where: { email: userEmail },
@@ -53,5 +52,28 @@ export const createResidency = asyncHandler(async (req, res) => {
         .status(500)
         .json({ error: "Internal server error", details: error.message });
     }
+  }
+});
+
+// get all residencies
+export const getAllResicemce = asyncHandler(async (req, res) => {
+  const residencies = await prisma.residency.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  res.send(residencies);
+});
+
+// get the residency by id
+export const getResidency = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const residency = await prisma.residency.findUnique({
+      where: { id },
+    });
+    res.send(residency);
+  } catch (error) {
+    throw new Error(error.message);
   }
 });
