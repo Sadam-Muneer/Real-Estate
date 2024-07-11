@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 const Item = ({ property }) => {
   const { listingType, image, title, city, description, price, facilities } =
     property;
-
   return (
     <div className="rounded-2xl p-3 bg-white">
       <div className="pb-2 relative">
