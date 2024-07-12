@@ -5,5 +5,4 @@ const Addproperty = () => {
     </div>
   );
 };
-
 export default Addproperty;

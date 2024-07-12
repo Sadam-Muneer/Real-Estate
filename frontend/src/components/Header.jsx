@@ -3,14 +3,11 @@ import Navbar from "./Navbar";
 import { useEffect, useState } from "react";
 import { MdClose, MdMenu } from "react-icons/md";
 import userIcon from "../assets/user.svg";
-
 const Header = () => {
   const [active, setActive] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
-
   const ToggleMenu = () => setMenuOpened(!menuOpened);
   const closeMenu = () => setMenuOpened(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -20,22 +17,18 @@ const Header = () => {
       }
       setActive(window.scrollY > 40);
     };
-
     const handleResize = () => {
       if (window.innerWidth >= 1280 && menuOpened) {
         closeMenu();
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, [menuOpened]);
-
   return (
     <header className="max-padd-container fixed top-1 w-full left-0 right-0 z-50">
       <div
@@ -86,5 +79,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;

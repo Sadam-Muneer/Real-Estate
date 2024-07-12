@@ -6,7 +6,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { PROPERTIES } from "../constants/data";
 import Item from "./Item";
-
 const Properties = () => {
   return (
     <section className="max-padd-container">
@@ -57,5 +56,4 @@ const Properties = () => {
     </section>
   );
 };
-
 export default Properties;

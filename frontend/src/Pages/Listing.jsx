@@ -2,29 +2,23 @@ import { useState } from "react";
 import Item from "../components/Item";
 import Searchbar from "../components/Searchbar";
 import useProperties from "../hooks/useProperties";
-
 const Listing = () => {
   const { data: properties, isError, isLoading } = useProperties();
   console.log(properties);
   const [category, setCategory] = useState("all");
-
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
   };
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   if (isError) {
     return <div>Error loading properties</div>;
   }
-
   const filteredProperties = properties.filter((property) => {
     if (category === "all") return true;
     return property.listingType === category;
   });
-
   return (
     <main className="max-padd-container my-[99px]">
       <div className="max-padd-container py-10 xl:py-22 rounded-3xl">
@@ -66,5 +60,4 @@ const Listing = () => {
     </main>
   );
 };
-
 export default Listing;

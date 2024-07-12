@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 const Hero = () => {
   return (
     <section className="max-padd-container pt-[99px]">
@@ -22,7 +21,6 @@ const Hero = () => {
               to={"/listing"}
               className="btn-secondary rounded-xl flexCenter !py-4"
             >
-              {" "}
               Shop Now
             </Link>
           </div>

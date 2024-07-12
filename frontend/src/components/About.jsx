@@ -2,16 +2,13 @@ import AboutImage from "../assets/about.jpg";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
-
 const About = () => {
   const statistics = [
     { label: "Happy Clients", value: 12 },
     { label: "Different Cities", value: 3 },
     { label: "Projects Completed", value: 45 },
   ];
-
   const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       const aboutSection = document.getElementById("about");
@@ -21,14 +18,11 @@ const About = () => {
         setIsVisible(visible);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
   return (
     <section id="about" className="max-padd-container py-16 xl:py-28">
       <div className="flex flex-col xl:flex-row gap-10">

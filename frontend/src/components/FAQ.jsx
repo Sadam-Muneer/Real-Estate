@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const AgentsFAQ = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const faqs = [
@@ -24,11 +23,9 @@ const AgentsFAQ = () => {
         "To become an agent, you need to complete the application process on our website and meet the required qualifications.",
     },
   ];
-
   const toggleAnswer = (index) => {
     setOpenIndex(openIndex === index ? null : index);
   };
-
   return (
     <div>
       <section className="py-5 bg-white-50 sm:py-5 lg:py-12 border-xl">
@@ -82,5 +79,4 @@ const AgentsFAQ = () => {
     </div>
   );
 };
-
 export default AgentsFAQ;

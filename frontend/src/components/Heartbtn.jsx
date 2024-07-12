@@ -1,5 +1,4 @@
 import { FaHeart } from "react-icons/fa";
-
 const Heartbtn = () => {
   return (
     <div>
@@ -11,5 +10,4 @@ const Heartbtn = () => {
     </div>
   );
 };
-
 export default Heartbtn;

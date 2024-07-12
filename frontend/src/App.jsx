@@ -11,7 +11,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/ReactToastify.css";
-
 const App = () => {
   const queryClient = new QueryClient();
   return (
@@ -39,5 +38,4 @@ const App = () => {
     </QueryClientProvider>
   );
 };
-
 export default App;

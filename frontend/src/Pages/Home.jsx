@@ -3,7 +3,6 @@ import About from "../components/About";
 import Properties from "../components/Properties";
 import Blogs from "../components/Blogs";
 import bannerImg from "../assets/banner.png";
-
 const Home = () => {
   return (
     <main>
@@ -17,5 +16,4 @@ const Home = () => {
     </main>
   );
 };
-
 export default Home;

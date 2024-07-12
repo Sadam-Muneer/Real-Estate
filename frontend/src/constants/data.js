@@ -11,7 +11,6 @@ import blog4 from "../assets/image4.jpg";
 import blogtwo from "../assets/blog2.jpg";
 import blogthree from "../assets/blog3.jpg";
 import blogfour from "../assets/blog4.jpg";
-
 export const PROPERTIES = [
   {
     title: "Tranquil Terrace Haven",
@@ -167,7 +166,6 @@ export const PROPERTIES = [
     listingType: "Rent",
   },
 ];
-
 export const BLOGS = [
   {
     image: blog1,
@@ -190,7 +188,6 @@ export const BLOGS = [
     category: "Villa",
   },
 ];
-
 export const FOOTER_LINK = [
   {
     title: "Learn More",
@@ -208,7 +205,6 @@ export const FOOTER_LINK = [
     links: ["Terms and Conditions", "Special Offers", "Customer Reviews"],
   },
 ];
-
 export const FOOTER_CONTACT_INFO = {
   title: "Contact Info",
   links: [

@@ -5,5 +5,4 @@ const Property = () => {
     </div>
   );
 };
-
 export default Property;

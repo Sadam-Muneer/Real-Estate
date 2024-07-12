@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FOOTER_LINK, FOOTER_CONTACT_INFO, SOCIALS } from "../constants/data";
 import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin } from "react-icons/fa";
-
 const Footer = () => {
   return (
     <footer className="max-padd-container mb-4">
@@ -98,7 +97,6 @@ const Footer = () => {
                       <FaLinkedin />
                     </Link>
                   </li>
-
                   {SOCIALS.links.map((link) => (
                     <li key={link.id} className="text-xl">
                       <Link to={link.url}>{link.icon}</Link>
@@ -123,9 +121,7 @@ const Footer = () => {
     </footer>
   );
 };
-
 export default Footer;
-
 const FooterColumn = ({ title, children }) => {
   return (
     <div className="flex flex-col gap-5">
@@ -134,7 +130,6 @@ const FooterColumn = ({ title, children }) => {
     </div>
   );
 };
-
 FooterColumn.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,

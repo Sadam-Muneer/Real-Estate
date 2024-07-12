@@ -3,12 +3,10 @@ import { FaLocationDot } from "react-icons/fa6";
 import { MdOutlinePhone } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiTime } from "react-icons/bi";
-
 import image from "../assets/sadam (2).jpg";
 import shahrukh from "../assets/shahrukh2.jpg";
 import FAQ from "../components/FAQ";
 import Testimonials from "../components/TestimonialSlider";
-
 const agents = [
   {
     id: 1,
@@ -62,7 +60,7 @@ const agents = [
     experience: "2 years",
     phone: "+923144133994",
     whatsapp: "https://wa.me/923144133994",
-    email: "mudassirnasir@gmail.com",
+    email: "mudassirnasir875@gmail.com",
     image: "https://via.placeholder.com/150",
   },
   {
@@ -110,14 +108,11 @@ const agents = [
     image: "https://via.placeholder.com/150",
   },
 ];
-
 const AgentPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-
   const filteredAgents = agents.filter((agent) =>
     agent.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
   return (
     <>
       <main className="max-padd-container my-[99px]">
@@ -195,5 +190,4 @@ const AgentPage = () => {
     </>
   );
 };
-
 export default AgentPage;

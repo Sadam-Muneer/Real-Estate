@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { MdAddHome, MdHomeWork } from "react-icons/md";
 import { RiCheckboxMultipleBlankFill } from "react-icons/ri";
 import { MdPerson } from "react-icons/md";
-
 const Navbar = ({ containerStyles, closeMenu }) => {
   return (
     <nav className={containerStyles}>

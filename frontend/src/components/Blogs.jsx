@@ -1,5 +1,4 @@
 import { BLOGS } from "../constants/data";
-
 const Blogs = () => {
   return (
     <section className="max-padd-container">
@@ -30,5 +29,4 @@ const Blogs = () => {
     </section>
   );
 };
-
 export default Blogs;

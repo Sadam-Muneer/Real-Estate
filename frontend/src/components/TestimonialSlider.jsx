@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import Swiper from "swiper";
 import "swiper/swiper-bundle.css";
-
 const Testimonials = () => {
   useEffect(() => {
     const swiper = new Swiper(".mySwiper", {
@@ -14,7 +13,7 @@ const Testimonials = () => {
         clickable: true,
       },
       autoplay: {
-        delay: 1000, // Set to 1 second
+        delay: 1000,
         disableOnInteraction: false,
       },
       breakpoints: {
@@ -32,58 +31,54 @@ const Testimonials = () => {
         },
       },
     });
-
     return () => {
       swiper.destroy();
     };
   }, []);
-
   const testimonials = [
     {
       rating: "4.9",
       text: "Sadam provided excellent service and was very knowledgeable about the properties.",
       name: "Alex K.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696230027.png",
+      avatar: "https://randomuser.me/api/portraits/men/1.jpg",
     },
     {
-      rating: "4.9",
-      text: "Sara was very helpful and found the perfect home for my family",
-      name: "Harsh P.",
+      rating: "4.8",
+      text: "Sara was very helpful and found the perfect home for my family.",
+      name: "Sara P.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696229994.png",
+      avatar: "https://randomuser.me/api/portraits/women/2.jpg",
     },
-
     {
-      rating: "4.9",
+      rating: "5.0",
       text: "Ahmed made the buying process smooth and easy. Highly recommend!",
-      name: "Jane D",
+      name: "Ahmed R.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696229969.png",
+      avatar: "https://randomuser.me/api/portraits/men/3.jpg",
     },
     {
-      rating: "4.9",
-      text: "Fatima is very professional and knowledgeable. She helped us find a deal.",
-      name: "Jane D",
+      rating: "4.7",
+      text: "Fatima is professional and knowledgeable. She helped us find a great deal.",
+      name: "Fatima S.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696229969.png",
+      avatar: "https://randomuser.me/api/portraits/women/4.jpg",
     },
     {
       rating: "4.9",
       text: "Bilal's expertise and dedication made the entire process stress-free.",
-      name: "Jane D",
+      name: "Bilal A.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696229969.png",
+      avatar: "https://randomuser.me/api/portraits/men/5.jpg",
     },
     {
-      rating: "4.9",
+      rating: "4.8",
       text: "Zara went above and beyond to ensure we found the right property.",
-      name: "Jane D",
+      name: "Zara M.",
       position: "Real Estate Agent",
-      avatar: "https://pagedone.io/asset/uploads/1696229969.png",
+      avatar: "https://randomuser.me/api/portraits/women/8.jpg",
     },
   ];
-
   return (
     <section className="py-14">
       <div className="mx-auto max-w-7xl px-6 sm:px-6 lg:px-8">
@@ -92,7 +87,6 @@ const Testimonials = () => {
             What our happy users say!
           </h2>
         </div>
-
         <div className="swiper mySwiper">
           <div className="swiper-wrapper w-max">
             {testimonials.map((testimonial, index) => (
@@ -119,9 +113,9 @@ const Testimonials = () => {
                       {testimonial.text}
                     </p>
                   </div>
-                  <div className="flex items-center gap-5 border-t border-solid border-gray-200 pt-5 cursor-pointer">
+                  <div className="flex items-center gap-5 border-t border-solid border-gray-200 pt-5 cursor-pointer rounded-full">
                     <img
-                      className="h-10 w-10"
+                      className="h-10 w-10 rounded-full"
                       src={testimonial.avatar}
                       alt="avatar"
                     />
@@ -144,5 +138,4 @@ const Testimonials = () => {
     </section>
   );
 };
-
 export default Testimonials;

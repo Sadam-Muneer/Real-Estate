@@ -6,7 +6,6 @@ import {
   MdOutlineGarage,
 } from "react-icons/md";
 import { Link } from "react-router-dom";
-
 const Item = ({ property }) => {
   const { listingType, image, title, city, description, price, facilities } =
     property;
@@ -46,7 +45,6 @@ const Item = ({ property }) => {
     </div>
   );
 };
-
 Item.propTypes = {
   property: PropTypes.shape({
     image: PropTypes.string.isRequired,
@@ -62,5 +60,4 @@ Item.propTypes = {
     listingType: PropTypes.string.isRequired,
   }).isRequired,
 };
-
 export default Item;
