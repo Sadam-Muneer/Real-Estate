@@ -4,6 +4,7 @@ import { MdOutlinePhone } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiTime } from "react-icons/bi";
 import image from "../assets/sadam (2).jpg";
+import image2 from "../assets/hamza.jpg";
 import shahrukh from "../assets/shahrukh2.jpg";
 import FAQ from "../components/FAQ";
 import Testimonials from "../components/TestimonialSlider";
@@ -16,7 +17,7 @@ const agents = [
     experience: "5 years",
     phone: "+923467133632",
     whatsapp: "https://wa.me/923467133632",
-    email: "shahrukhnazar@gmail.com",
+    email: "shahrukhnazarmalik@gmail.com",
     image: shahrukh,
   },
   {
@@ -38,8 +39,8 @@ const agents = [
     experience: "3 years",
     phone: "+923470715406",
     whatsapp: "https://wa.me/923470715406",
-    email: "hamza@gmail.com",
-    image: "https://via.placeholder.com/155",
+    email: "syedhamzazahoor7@gmail.com",
+    image: image2,
   },
   {
     id: 4,
@@ -50,7 +51,7 @@ const agents = [
     phone: "+923044561544",
     whatsapp: "https://wa.me/923044561544",
     email: "sadammuneer390@gmail.com",
-    image,
+    image: image,
   },
   {
     id: 5,
@@ -69,8 +70,8 @@ const agents = [
     city: "Rawalpindi",
     title: "Residential Real Estate Specialist",
     experience: "7 years",
-    phone: "+923456789012",
-    whatsapp: "https://wa.me/923456789012",
+    phone: "+923043265231",
+    whatsapp: "https://wa.me/923043265231",
     email: "zain@gmail.com",
     image: "https://via.placeholder.com/150",
   },
@@ -80,8 +81,8 @@ const agents = [
     city: "Peshawar",
     title: "Luxury Property Specialist",
     experience: "3 years",
-    phone: "+923567890123",
-    whatsapp: "https://wa.me/923567890123",
+    phone: "+923043265234",
+    whatsapp: "https://wa.me/923043265234",
     email: "fatima@gmail.com",
     image: "https://via.placeholder.com/150",
   },
@@ -180,7 +181,9 @@ const AgentPage = () => {
             ))
           ) : (
             <div className="text-center col-span-full">
-              <h4 className="text-lg font-bold">No data found</h4>
+              <h4 className="text-lg font-bold">
+                No agents available based on your search
+              </h4>
             </div>
           )}
         </div>

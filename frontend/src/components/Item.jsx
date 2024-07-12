@@ -60,4 +60,5 @@ Item.propTypes = {
     listingType: PropTypes.string.isRequired,
   }).isRequired,
 };
+
 export default Item;
