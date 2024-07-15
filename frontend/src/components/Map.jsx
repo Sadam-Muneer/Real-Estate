@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 
 const Map = ({ address, city, country }) => {
+  const fullAddress = `${address}, ${city}, ${country}`;
+
   return (
     <div>
       <MapContainer
-        center={[53.35, 18.8]}
-        zoom={1}
+        center={[0, 0]} // Neutral initial center
+        zoom={2} // Start with a higher zoom level
         scrollWheelZoom={false}
         className="h-[24rem] w-full mt-5 z-0"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        <GeoCoderMarker address={`${address}, ${city}, ${country}`} />
+        <GeoCoderMarker address={fullAddress} />
       </MapContainer>
     </div>
   );

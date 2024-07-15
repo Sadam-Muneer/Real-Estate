@@ -7,37 +7,37 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import L from "leaflet";
 import * as ELG from "esri-leaflet-geocoder";
 
-let defaultIcon = L.icon({
+let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
 });
 
-L.Marker.prototype.options.icon = defaultIcon;
+L.Marker.prototype.options.icon = DefaultIcon;
 
 const GeoCoderMarker = ({ address }) => {
   const map = useMap();
-  const [position, setPosition] = useState([60, 19]); // Default position
+  const [position, setPosition] = useState([0, 0]); // Default position
 
   useEffect(() => {
-    const geocode = async () => {
-      const geocoder = new ELG.Geocode();
-      geocoder.address(address).run((err, results) => {
+    ELG.geocode()
+      .text(address)
+      .run((err, results) => {
         if (err) {
-          console.error(err);
+          console.error("Geocoding error:", err);
           return;
         }
-        if (results.results.length > 0) {
-          const { latlng } = results.results[0];
-          setPosition([latlng.lat, latlng.lng]);
-          map.setView([latlng.lat, latlng.lng], 13); // Update map view
+        if (results && results.results && results.results.length > 0) {
+          const { lat, lng } = results.results[0].latlng;
+          setPosition([lat, lng]);
+          map.flyTo([lat, lng], 13); // Adjust zoom level as needed
+        } else {
+          console.error("No results found for:", address);
         }
       });
-    };
-    geocode();
   }, [address, map]);
 
   return (
-    <Marker position={position}>
+    <Marker position={position} icon={DefaultIcon}>
       <Popup>{address}</Popup>
     </Marker>
   );
