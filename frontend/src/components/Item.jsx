@@ -5,10 +5,11 @@ import {
   MdOutlineBed,
   MdOutlineGarage,
 } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Item = ({ property }) => {
   const { listingType, image, title, city, description, price, facilities } =
     property;
+  const navigate = useNavigate();
   return (
     <div className="rounded-2xl p-3 bg-white">
       <div className="pb-2 relative">
@@ -36,17 +37,20 @@ const Item = ({ property }) => {
       <p className="pt-2 mb-4 line-clamp-2">{description}</p>
       <div className="flexBetween">
         <div className="bold-20">${price}.00</div>
-        <Link to={"/"}>
-          <button className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm">
-            View Details
-          </button>
-        </Link>
+
+        <button
+          onClick={() => navigate(`../listing/${property.id}`)}
+          className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
+        >
+          View Details
+        </button>
       </div>
     </div>
   );
 };
 Item.propTypes = {
   property: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,

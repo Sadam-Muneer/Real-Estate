@@ -10,7 +10,8 @@ import Layout from "./components/Layout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
-import "react-toastify/ReactToastify.css";
+import "react-toastify/dist/ReactToastify.css";
+
 const App = () => {
   const queryClient = new QueryClient();
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/listing" element={<Listing />} />
+              <Route path="/listing/:propertyId" element={<Property />} />
               <Route path="/addproperty" element={<Property />} />
               <Route path="/agent" element={<AgentPage />} />
               <Route path="/booking" element={<Booking />} />
@@ -38,4 +40,5 @@ const App = () => {
     </QueryClientProvider>
   );
 };
+
 export default App;

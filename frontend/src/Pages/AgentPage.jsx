@@ -4,6 +4,7 @@ import { MdOutlinePhone } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { BiTime } from "react-icons/bi";
 import image from "../assets/sadam (2).jpg";
+import nawaz from "../assets/sharif.jpg";
 import image2 from "../assets/hamza.jpg";
 import shahrukh from "../assets/shahrukh2.jpg";
 import FAQ from "../components/FAQ";
@@ -66,25 +67,26 @@ const agents = [
   },
   {
     id: 6,
-    name: "Zain Malik",
-    city: "Rawalpindi",
-    title: "Residential Real Estate Specialist",
+    name: "Nawaz Sharif",
+    city: "Corruptionville",
+    title: "The King of Cash and Carry",
     experience: "7 years",
     phone: "+923043265231",
     whatsapp: "https://wa.me/923043265231",
-    email: "zain@gmail.com",
-    image: "https://via.placeholder.com/150",
+    email: "nawazsharif@gmail.com",
+    image: nawaz,
   },
   {
     id: 7,
-    name: "Fatima Noor",
+    name: "Chahat Fateh Ali khan",
     city: "Peshawar",
     title: "Luxury Property Specialist",
     experience: "3 years",
     phone: "+923043265234",
     whatsapp: "https://wa.me/923043265234",
-    email: "fatima@gmail.com",
-    image: "https://via.placeholder.com/150",
+    email: "chahatfateh@gmail.com",
+    image:
+      "https://i0.wp.com/celebrityspot.com.ng/wp-content/uploads/2024/04/1714254719093.jpg?ssl=1",
   },
   {
     id: 8,

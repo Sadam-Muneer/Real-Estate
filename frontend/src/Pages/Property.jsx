@@ -1,8 +1,97 @@
+import { useQuery } from "react-query";
+import { Link, useLocation } from "react-router-dom";
+import { getProperty } from "../utils/Api";
+import { PuffLoader } from "react-spinners";
+import {
+  MdOutlineBathtub,
+  MdOutlineBed,
+  MdOutlineGarage,
+} from "react-icons/md";
+import Heartbtn from "../components/Heartbtn";
+import { FaLocationDot } from "react-icons/fa6";
+import Map from "../components/Map";
+
 const Property = () => {
+  const { pathname } = useLocation();
+  const id = pathname.split("/").slice(-1)[0];
+
+  const { data, isLoading, isError } = useQuery(["residency", id], () =>
+    getProperty(id)
+  );
+
+  if (isLoading) {
+    return (
+      <div className="h-64 flexCenter">
+        Data Loading...
+        <PuffLoader size={80} color="#555" />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div className="h-64 flexCenter">Error while fetching the data</div>;
+  }
+
+  const { image, title, city, description, price, facilities, listingType } =
+    data;
+
   return (
-    <div className="max-padd-container py-16 xl:py-28">
-      <h1>Property</h1>
+    <div className="max-padd-container my-[99px] pt-10">
+      <div className="pb-2 relative">
+        <img
+          src={image}
+          alt={title}
+          className="rounded-xl max-h-[27rem] self-center w-full object-cover "
+        />
+        <div className="absolute top-4 right-6">
+          <Heartbtn />
+        </div>
+      </div>
+      <div className="xl:flexBetween gap-8">
+        <div className="flex-1">
+          <div className="flex justify-between items-center">
+            <h5 className="bold-16 my-1 text-secondary">{city}</h5>
+            <span className="bold-16 text-gray-500">{listingType}</span>
+          </div>
+          <div className="flexBetween">
+            <h4 className="medium-18 line-clamp-1">{title}</h4>
+            <div className="bold-20">${price}.00</div>
+          </div>
+          <div className="flex gap-x-4 py-2">
+            <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
+              <MdOutlineBed /> {facilities.bedroom}
+            </div>
+            <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
+              <MdOutlineBathtub /> {facilities.bathroom}
+            </div>
+            <div className="flexCenter gap-x-2 pr-4 font-[500]">
+              <MdOutlineGarage /> {facilities.parking}
+            </div>
+          </div>
+          <p className="pt-2 mb-4">{description}</p>
+          <div className="flexStart gap-x-2 my-5">
+            <FaLocationDot />
+          </div>
+          {data?.address} {data?.city} {data?.country}
+          <div className="flexBetween">
+            <Link to={"/"}>
+              <button className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm">
+                Book the visit
+              </button>
+            </Link>
+          </div>
+        </div>
+        {/* right side */}
+        <div className="flex-1">
+          <Map
+            address={data?.address}
+            city={data?.city}
+            country={data?.country}
+          />
+        </div>
+      </div>
     </div>
   );
 };
+
 export default Property;

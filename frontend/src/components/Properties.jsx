@@ -46,7 +46,7 @@ const Properties = () => {
           modules={[Autoplay]}
           className="h-[488px] md:h-[533px] xl:h-[422px] mt-5"
         >
-          {PROPERTIES.map((property) => (
+          {PROPERTIES.slice(0, 6).map((property) => (
             <SwiperSlide key={property.title}>
               <Item property={property} />
             </SwiperSlide>

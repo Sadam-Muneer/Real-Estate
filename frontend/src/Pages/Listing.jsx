@@ -2,6 +2,7 @@ import { useState } from "react";
 import Item from "../components/Item";
 import Searchbar from "../components/Searchbar";
 import useProperties from "../hooks/useProperties";
+import { PuffLoader } from "react-spinners";
 
 const Listing = () => {
   const { data: properties, isError, isLoading } = useProperties();
@@ -17,11 +18,22 @@ const Listing = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-64 flexCenter">
+        Data Loading...
+        <PuffLoader
+          hidden="80"
+          width="80"
+          radius={1}
+          color="#555"
+          aria-label="puff-loading"
+        />
+      </div>
+    );
   }
 
   if (isError) {
-    return <div>Error loading properties</div>;
+    return <div>Error while fetching the data</div>;
   }
 
   const filteredProperties = properties.filter((property) => {
