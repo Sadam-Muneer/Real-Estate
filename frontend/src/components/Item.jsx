@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 const Item = ({ property }) => {
-  const { listingType, image, title, city, description, price, facilities } =
+  const { listType, image, title, city, description, price, facilities } =
     property;
   const navigate = useNavigate();
   return (
@@ -20,7 +20,7 @@ const Item = ({ property }) => {
       </div>
       <div className="flex justify-between items-center">
         <h5 className="bold-16 my-1 text-secondary">{city}</h5>
-        <span className="bold-16 text-gray-500">{listingType}</span>
+        <span className="bold-16 text-gray-500">{listType}</span>
       </div>
       <h4 className="medium-18 line-clamp-1">{title}</h4>
       <div className="flex gap-x-2 py-2">
@@ -61,7 +61,7 @@ Item.propTypes = {
       bathroom: PropTypes.string.isRequired,
       parking: PropTypes.string.isRequired,
     }).isRequired,
-    listingType: PropTypes.string.isRequired,
+    listType: PropTypes.string.isRequired,
   }).isRequired,
 };
 

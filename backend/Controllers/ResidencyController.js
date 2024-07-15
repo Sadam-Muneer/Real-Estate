@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import { prisma } from "../Config/PrismaConfig.js";
 
+// Create a new residency
 export const createResidency = asyncHandler(async (req, res) => {
   const {
     title,
@@ -12,11 +13,20 @@ export const createResidency = asyncHandler(async (req, res) => {
     facilities,
     image,
     userEmail,
+    listType, // Add listType here
   } = req.body.data;
+
+  // Validate listType
+  const validListTypes = ["SELL", "BUY", "RENT"];
+  if (!listType || !validListTypes.includes(listType)) {
+    return res.status(400).json({ error: "Invalid listType value" });
+  }
+
   try {
     let user = await prisma.user.findUnique({
       where: { email: userEmail },
     });
+
     if (!user) {
       user = await prisma.user.create({
         data: {
@@ -24,6 +34,7 @@ export const createResidency = asyncHandler(async (req, res) => {
         },
       });
     }
+
     const residency = await prisma.residency.create({
       data: {
         title,
@@ -32,8 +43,9 @@ export const createResidency = asyncHandler(async (req, res) => {
         address,
         country,
         city,
-        facilities,
+        facilities, // Assume facilities is already a JSON object
         image,
+        listType, // Include listType here
         owner: { connect: { email: userEmail } },
       },
     });
@@ -55,25 +67,37 @@ export const createResidency = asyncHandler(async (req, res) => {
   }
 });
 
-// get all residencies
-export const getAllResicemce = asyncHandler(async (req, res) => {
-  const residencies = await prisma.residency.findMany({
-    orderBy: {
-      createdAt: "desc",
-    },
-  });
-  res.send(residencies);
+// Get all residencies
+export const getAllResidencies = asyncHandler(async (req, res) => {
+  try {
+    const residencies = await prisma.residency.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+    res.send(residencies);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
+  }
 });
 
-// get the residency by id
+// Get a residency by ID
 export const getResidency = asyncHandler(async (req, res) => {
   const { id } = req.params;
   try {
     const residency = await prisma.residency.findUnique({
       where: { id },
     });
-    res.send(residency);
+    if (residency) {
+      res.send(residency);
+    } else {
+      res.status(404).json({ message: "Residency not found" });
+    }
   } catch (error) {
-    throw new Error(error.message);
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
   }
 });

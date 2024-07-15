@@ -32,8 +32,7 @@ const Property = () => {
     return <div className="h-64 flexCenter">Error while fetching the data</div>;
   }
 
-  const { image, title, city, description, price, facilities, listingType } =
-    data;
+  const { image, title, city, description, price, facilities, listType } = data;
 
   return (
     <div className="max-padd-container my-[99px] pt-10">
@@ -51,7 +50,7 @@ const Property = () => {
         <div className="flex-1">
           <div className="flex justify-between items-center">
             <h5 className="bold-16 my-1 text-secondary">{city}</h5>
-            <span className="bold-16 text-gray-500">{listingType}</span>
+            <span className="bold-16 text-gray-500">{listType}</span>
           </div>
           <div className="flexBetween">
             <h4 className="medium-18 line-clamp-1">{title}</h4>

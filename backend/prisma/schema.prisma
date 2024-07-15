@@ -26,11 +26,18 @@ model Residency {
                     city        String
                     country     String
                     image       String
-                    facilities  String
+                    facilities  Json
+                    listType    ListType
                     userEmail   String
                     owner       User     @relation("owner", fields: [userEmail], references: [email])
                     createdAt   DateTime @default(now())
                     updatedAt   DateTime @updatedAt
 
                     @@unique(fields: [address, userEmail])
+}
+
+enum ListType {
+                    SELL
+                    BUY
+                    RENT
 }

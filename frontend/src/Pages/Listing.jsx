@@ -6,7 +6,7 @@ import { PuffLoader } from "react-spinners";
 
 const Listing = () => {
   const { data: properties, isError, isLoading } = useProperties();
-  const [category, setCategory] = useState("all");
+  const [category, setCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleCategoryChange = (newCategory) => {
@@ -38,7 +38,7 @@ const Listing = () => {
 
   const filteredProperties = properties.filter((property) => {
     const matchesCategory =
-      category === "all" || property.listingType === category;
+      category === "All" || property.listType === category;
     const matchesSearchTerm =
       property.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       property.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -57,28 +57,28 @@ const Listing = () => {
         </div>
         <div className="flex space-x-4 mt-8">
           <button
-            onClick={() => handleCategoryChange("all")}
+            onClick={() => handleCategoryChange("All")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
             All
           </button>
           <button
-            onClick={() => handleCategoryChange("Buy")}
+            onClick={() => handleCategoryChange("BUY")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            Buy
+            BUY
           </button>
           <button
-            onClick={() => handleCategoryChange("Sell")}
+            onClick={() => handleCategoryChange("SELL")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            Sell
+            SELL
           </button>
           <button
-            onClick={() => handleCategoryChange("Rent")}
+            onClick={() => handleCategoryChange("RENT")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            Rent
+            RENT
           </button>
         </div>
         {filteredProperties.length > 0 ? (
