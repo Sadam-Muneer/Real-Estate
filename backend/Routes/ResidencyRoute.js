@@ -4,8 +4,9 @@ import {
   getAllResidencies,
   getResidency,
 } from "../Controllers/ResidencyController.js";
+import jwtCheck from "../Config/Auth0Config.js";
 const router = express.Router();
-router.post("/residency", createResidency);
+router.post("/residency", jwtCheck, createResidency);
 router.get("/Allresidency", getAllResidencies);
 router.get("/:id", getResidency);
 

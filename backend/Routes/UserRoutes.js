@@ -7,11 +7,12 @@ import {
   getAllFavLists,
   toFav,
 } from "../Controllers/UserControllers.js";
+import jwtCheck from "../Config/Auth0Config.js";
 const router = express.Router();
-router.post("/register", createUser);
-router.post("/bookvisit/:id", bookVisit);
+router.post("/register", jwtCheck, createUser);
+router.post("/bookvisit/:id", jwtCheck, bookVisit);
 router.post("/allBookedVisits", allBookedVisits);
 router.post("/cancelBookings/:id", cancelBookings);
-router.post("/toFav/:rid", toFav);
-router.post("/allFavLists", getAllFavLists);
+router.post("/toFav/:rid", jwtCheck, toFav);
+router.post("/allFavLists", jwtCheck, getAllFavLists);
 export { router as userRoutes };

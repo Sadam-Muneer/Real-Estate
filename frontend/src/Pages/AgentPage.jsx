@@ -7,7 +7,6 @@ import image from "../assets/sadam (2).jpg";
 import nawaz from "../assets/sharif.jpg";
 import image2 from "../assets/hamza.jpg";
 import shahrukh from "../assets/shahrukh2.jpg";
-import babar from "../assets/babar.jpeg";
 import FAQ from "../components/FAQ";
 import Testimonials from "../components/TestimonialSlider";
 const agents = [
@@ -24,14 +23,14 @@ const agents = [
   },
   {
     id: 2,
-    name: "Babar Azam",
+    name: "Abdullah Malik",
     city: "Multan",
     title: "Real Estate Consultant",
     experience: "4 years",
     phone: "+923022736698",
     whatsapp: "https://wa.me/923022736698",
     email: "abdullahmalik@gmail.com",
-    image: babar,
+    image: "https://via.placeholder.com/160",
   },
   {
     id: 3,
