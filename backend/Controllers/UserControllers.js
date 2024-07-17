@@ -16,8 +16,17 @@ export const createUser = asyncHandler(async (req, res) => {
 // to book a visit to resident
 
 export const bookVisit = asyncHandler(async (req, res) => {
+  console.log("Request body:", req.body); // Add this line for debugging
   const { email, date } = req.body;
   const { id } = req.params;
+
+  // Basic validation
+  if (!email || !date) {
+    return res
+      .status(400)
+      .json({ message: "Email and date are required fields" });
+  }
+
   try {
     const user = await prisma.user.findUnique({
       where: { email },
@@ -34,6 +43,7 @@ export const bookVisit = asyncHandler(async (req, res) => {
         .json({ message: "This Residency is Already Booked By You" });
     }
 
+    // Assuming `prisma.user.update` correctly updates the user's booked visits
     await prisma.user.update({
       where: { email },
       data: {

@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { getProperty } from "../utils/Api";
 import { PuffLoader } from "react-spinners";
 import {
@@ -10,6 +10,10 @@ import {
 import Heartbtn from "../components/Heartbtn";
 import { FaLocationDot } from "react-icons/fa6";
 import Map from "../components/Map";
+import { useState } from "react";
+import UseAuthChck from "../hooks/UseAuthChck";
+import { useAuth0 } from "@auth0/auth0-react";
+import BookingModel from "../components/BookingModel";
 
 const Property = () => {
   const { pathname } = useLocation();
@@ -18,7 +22,9 @@ const Property = () => {
   const { data, isLoading, isError } = useQuery(["residency", id], () =>
     getProperty(id)
   );
-
+  const [modalOpen, setModalOpen] = useState(false);
+  const { validateLogin } = UseAuthChck();
+  const { user } = useAuth0();
   if (isLoading) {
     return (
       <div className="h-64 flexCenter">
@@ -70,14 +76,25 @@ const Property = () => {
           <p className="pt-2 mb-4">{description}</p>
           <div className="flexStart gap-x-2 my-5">
             <FaLocationDot />
+            {data?.address} {data?.city} {data?.country}
           </div>
-          {data?.address} {data?.city} {data?.country}
           <div className="flexBetween">
-            <Link to={"/"}>
-              <button className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm">
-                Book the visit
-              </button>
-            </Link>
+            <button
+              onClick={() => {
+                if (validateLogin()) {
+                  setModalOpen(true);
+                }
+              }}
+              className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm w-full"
+            >
+              Book the visit
+            </button>
+            <BookingModel
+              opened={modalOpen}
+              setOpened={setModalOpen}
+              propertyId={id}
+              email={user?.email}
+            />
           </div>
         </div>
         {/* right side */}

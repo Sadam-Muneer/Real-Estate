@@ -9,12 +9,16 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
+// Middleware
+app.use(express.json()); // Ensure this is before the routes
 app.use(cookieParser());
 app.use(cors());
 
+// Routes
+app.use("/api/user", userRoutes);
+app.use("/api/residency", ResidencyRoute);
+
+// Start server
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
 });
-app.use("/api/user", userRoutes);
-app.use("/api/residency", ResidencyRoute);
