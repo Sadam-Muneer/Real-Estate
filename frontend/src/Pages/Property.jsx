@@ -10,7 +10,7 @@ import {
 import Heartbtn from "../components/Heartbtn";
 import { FaLocationDot } from "react-icons/fa6";
 import Map from "../components/Map";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UseAuthChck from "../hooks/UseAuthChck";
 import { useAuth0 } from "@auth0/auth0-react";
 import BookingModel from "../components/BookingModel";
@@ -23,9 +23,34 @@ const Property = () => {
     getProperty(id)
   );
   const [modalOpen, setModalOpen] = useState(false);
-  const [isBooked, setIsBooked] = useState(false); // New state to track booking status
+  const [isBooked, setIsBooked] = useState(
+    localStorage.getItem("isBooked") === "true"
+  );
+  const [bookingDate, setBookingDate] = useState(null);
   const { validateLogin } = UseAuthChck();
   const { user } = useAuth0();
+
+  useEffect(() => {
+    const storedIsBooked = localStorage.getItem("isBooked") === "true";
+    const storedBookingDate = localStorage.getItem("bookingDate");
+    setIsBooked(storedIsBooked);
+    setBookingDate(
+      storedIsBooked && storedBookingDate ? new Date(storedBookingDate) : null
+    );
+  }, []);
+
+  const handleSetIsBooked = (value) => {
+    setIsBooked(value);
+    if (value) {
+      const now = new Date();
+      setBookingDate(now);
+      localStorage.setItem("bookingDate", now.toISOString());
+    } else {
+      setBookingDate(null);
+      localStorage.removeItem("bookingDate");
+    }
+    localStorage.setItem("isBooked", value.toString());
+  };
 
   if (isLoading) {
     return (
@@ -87,17 +112,27 @@ const Property = () => {
                   setModalOpen(true);
                 }
               }}
-              className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm w-full"
+              className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
             >
               {isBooked ? "Cancel Booking" : "Book the visit"}
             </button>
+
             <BookingModel
               opened={modalOpen}
               setOpened={setModalOpen}
               propertyId={id}
               email={user?.email}
-              setIsBooked={setIsBooked}
+              setIsBooked={handleSetIsBooked}
+              setBookingDate={setBookingDate}
             />
+          </div>
+          <div className="pt-5">
+            {isBooked && bookingDate && (
+              <p className="text-red-400">
+                This property has been booked by you on{" "}
+                {bookingDate.toLocaleDateString()}
+              </p>
+            )}
           </div>
         </div>
 

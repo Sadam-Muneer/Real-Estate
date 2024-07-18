@@ -5,7 +5,7 @@ import { DatePicker } from "@mantine/dates";
 import { useMutation } from "react-query";
 import UserDetailsContext from "../context/UserDetailsContext";
 import { toast } from "react-toastify";
-import { bookVisit, cancelVisit } from "../utils/Api"; // Assuming you have a cancelVisit function
+import { bookVisit, cancelVisit } from "../utils/Api";
 
 const BookingModel = ({
   opened,
@@ -13,6 +13,7 @@ const BookingModel = ({
   propertyId,
   email,
   setIsBooked,
+  setBookingDate,
 }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const { userDetails } = useContext(UserDetailsContext);
@@ -22,11 +23,15 @@ const BookingModel = ({
     setSelectedDate(null);
     setOpened(false);
     setIsBooked(true);
+    setBookingDate(selectedDate);
+    localStorage.setItem("bookingDate", selectedDate.toISOString());
   };
 
   const handleCancelBookingSuccessful = () => {
     setOpened(false);
     setIsBooked(false);
+    setBookingDate(null);
+    localStorage.removeItem("bookingDate");
   };
 
   const bookingMutation = useMutation(
@@ -118,6 +123,7 @@ BookingModel.propTypes = {
   propertyId: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   setIsBooked: PropTypes.func.isRequired,
+  setBookingDate: PropTypes.func.isRequired,
 };
 
 export default BookingModel;

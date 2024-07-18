@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         redirect_uri: window.location.origin,
       }}
       onRedirectCallback={onRedirectCallback}
-      cacheLocation="localstorage" // Ensure tokens are stored in local storage
+      cacheLocation="localstorage"
     >
       <MantineProvider>
         <App />

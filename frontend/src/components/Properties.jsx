@@ -36,9 +36,7 @@ const Properties = () => {
         <h2 className="h2">Find Your Dream Here</h2>
         <div className="flexBetween mt-8 mb-6">
           <h5>
-            <span className="font-bold">
-              {`Showing 1-${properties.length}`}{" "}
-            </span>
+            <span className="font-bold">Showing 1-6-:</span>
             Out of 3k Properties
           </h5>
           <Link
