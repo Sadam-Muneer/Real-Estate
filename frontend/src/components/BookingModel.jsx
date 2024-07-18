@@ -25,7 +25,6 @@ const BookingModel = ({
   };
 
   const handleCancelBookingSuccessful = () => {
-    toast.success("Visit canceled successfully!");
     setOpened(false);
     setIsBooked(false);
   };
@@ -46,8 +45,6 @@ const BookingModel = ({
           error.response && error.response.data && error.response.data.message;
         if (errorMessage === "This Residency is Already Booked By You") {
           toast.error("You have already booked this visit.");
-        } else {
-          toast.error("Something went wrong, please try again.");
         }
       },
     }

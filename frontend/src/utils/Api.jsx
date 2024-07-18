@@ -70,7 +70,7 @@ export const bookVisit = async (date, propertyId, email, token) => {
       }
     );
   } catch (error) {
-    toast.error("Something went wrong, try again please");
+    console.error("Something went wrong , please try again");
     throw error;
   }
 };
