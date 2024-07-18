@@ -51,7 +51,7 @@ const Layout = () => {
       <div>
         <Header />
         {!isAuthenticated ? (
-          <button onClick={handleLogin}>Login</button>
+          <button onClick={handleLogin}></button>
         ) : (
           <Outlet />
         )}

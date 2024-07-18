@@ -26,7 +26,7 @@ const App = () => {
         <BrowserRouter>
           <Suspense
             fallback={
-              <div className="max-padd-container pt-[99px]">
+              <div className="max-padd-container pt-[99px] flexCenter">
                 Loading data...
               </div>
             }

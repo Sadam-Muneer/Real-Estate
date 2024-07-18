@@ -1,12 +1,34 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { VscSettings } from "react-icons/vsc";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { PROPERTIES } from "../constants/data";
 import Item from "./Item";
+
 const Properties = () => {
+  const [properties, setProperties] = useState([]);
+
+  useEffect(() => {
+    const fetchProperties = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/residency/Allresidency"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch properties");
+        }
+        const data = await response.json();
+        setProperties(data);
+      } catch (error) {
+        console.error("Error fetching properties:", error);
+      }
+    };
+
+    fetchProperties();
+  }, []);
+
   return (
     <section className="max-padd-container">
       <div className="max-padd-container bg-primary py-16 xl:py-28 rounded-3xl">
@@ -14,7 +36,9 @@ const Properties = () => {
         <h2 className="h2">Find Your Dream Here</h2>
         <div className="flexBetween mt-8 mb-6">
           <h5>
-            <span className="font-bold">Showing 1-9 </span>
+            <span className="font-bold">
+              {`Showing 1-${properties.length}`}{" "}
+            </span>
             Out of 3k Properties
           </h5>
           <Link
@@ -46,8 +70,8 @@ const Properties = () => {
           modules={[Autoplay]}
           className="h-[488px] md:h-[533px] xl:h-[422px] mt-5"
         >
-          {PROPERTIES.slice(0, 6).map((property) => (
-            <SwiperSlide key={property.title}>
+          {properties.slice(0, 6).map((property) => (
+            <SwiperSlide key={property.id}>
               <Item property={property} />
             </SwiperSlide>
           ))}
@@ -56,4 +80,5 @@ const Properties = () => {
     </section>
   );
 };
+
 export default Properties;
