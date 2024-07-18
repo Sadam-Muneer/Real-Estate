@@ -1,9 +1,11 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import { toast } from "react-toastify";
+
 export const api = axios.create({
   baseURL: "http://localhost:8000/api",
 });
+
 export const getAllProperties = async () => {
   try {
     const response = await api.get("/residency/Allresidency", {
@@ -51,6 +53,7 @@ export const createUser = async (email, token) => {
     throw error;
   }
 };
+
 export const bookVisit = async (date, propertyId, email, token) => {
   try {
     await api.post(
@@ -72,20 +75,23 @@ export const bookVisit = async (date, propertyId, email, token) => {
   }
 };
 
-// Api.jsx
-
-export const cancelBooking = async (bookingId) => {
+export const cancelVisit = async (propertyId, email, token) => {
   try {
-    const response = await fetch(`/user/cancelBookings/${bookingId}`, {
-      method: "POST",
-    });
-
-    if (!response.ok) {
-      throw new Error("Failed to cancel booking");
-    }
-
-    return await response.json();
+    await api.post(
+      `/user/cancelBookings/${propertyId}`,
+      {
+        email,
+        id: propertyId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    toast.success("Visit canceled successfully");
   } catch (error) {
-    throw new Error(`Error canceling booking: ${error.message}`);
+    toast.error("Something went wrong, try again please");
+    throw error;
   }
 };

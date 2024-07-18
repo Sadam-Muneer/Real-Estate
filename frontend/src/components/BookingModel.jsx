@@ -5,9 +5,15 @@ import { DatePicker } from "@mantine/dates";
 import { useMutation } from "react-query";
 import UserDetailsContext from "../context/UserDetailsContext";
 import { toast } from "react-toastify";
-import { bookVisit } from "../utils/Api";
+import { bookVisit, cancelVisit } from "../utils/Api"; // Assuming you have a cancelVisit function
 
-const BookingModel = ({ opened, setOpened, propertyId, email }) => {
+const BookingModel = ({
+  opened,
+  setOpened,
+  propertyId,
+  email,
+  setIsBooked,
+}) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const { userDetails } = useContext(UserDetailsContext);
 
@@ -15,9 +21,16 @@ const BookingModel = ({ opened, setOpened, propertyId, email }) => {
     toast.success("Visit booked successfully!");
     setSelectedDate(null);
     setOpened(false);
+    setIsBooked(true);
   };
 
-  const mutation = useMutation(
+  const handleCancelBookingSuccessful = () => {
+    toast.success("Visit canceled successfully!");
+    setOpened(false);
+    setIsBooked(false);
+  };
+
+  const bookingMutation = useMutation(
     (date) => {
       if (!userDetails || !userDetails.token) {
         toast.error("User details not found.");
@@ -29,11 +42,9 @@ const BookingModel = ({ opened, setOpened, propertyId, email }) => {
       onSuccess: () => handleBookingSuccessful(),
       onError: (error) => {
         console.error("Error booking visit:", error);
-        if (
-          error.response &&
-          error.response.data.message ===
-            "This Residency is Already Booked By You"
-        ) {
+        const errorMessage =
+          error.response && error.response.data && error.response.data.message;
+        if (errorMessage === "This Residency is Already Booked By You") {
           toast.error("You have already booked this visit.");
         } else {
           toast.error("Something went wrong, please try again.");
@@ -42,12 +53,33 @@ const BookingModel = ({ opened, setOpened, propertyId, email }) => {
     }
   );
 
+  const cancelMutation = useMutation(
+    () => {
+      if (!userDetails || !userDetails.token) {
+        toast.error("User details not found.");
+        return Promise.reject("User details not found.");
+      }
+      return cancelVisit(propertyId, email, userDetails.token);
+    },
+    {
+      onSuccess: () => handleCancelBookingSuccessful(),
+      onError: (error) => {
+        console.error("Error canceling booking:", error);
+        toast.error("Something went wrong, please try again.");
+      },
+    }
+  );
+
   const handleBookVisit = () => {
     if (selectedDate && email) {
-      mutation.mutate(selectedDate);
+      bookingMutation.mutate(selectedDate);
     } else {
       toast.error("Please select a date and provide your email.");
     }
+  };
+
+  const handleCancelVisit = () => {
+    cancelMutation.mutate();
   };
 
   return (
@@ -65,10 +97,17 @@ const BookingModel = ({ opened, setOpened, propertyId, email }) => {
             minDate={new Date()}
           />
           <Button
-            disabled={!selectedDate || mutation.isLoading}
+            disabled={!selectedDate || bookingMutation.isLoading}
             onClick={handleBookVisit}
           >
-            {mutation.isLoading ? "Booking..." : "Book Visit"}
+            {bookingMutation.isLoading ? "Booking..." : "Book Visit"}
+          </Button>
+          <Button
+            color="red"
+            disabled={cancelMutation.isLoading}
+            onClick={handleCancelVisit}
+          >
+            {cancelMutation.isLoading ? "Canceling..." : "Cancel Booking"}
           </Button>
         </div>
       </Modal>
@@ -81,6 +120,7 @@ BookingModel.propTypes = {
   setOpened: PropTypes.func.isRequired,
   propertyId: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  setIsBooked: PropTypes.func.isRequired,
 };
 
 export default BookingModel;

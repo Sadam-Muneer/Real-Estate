@@ -23,8 +23,10 @@ const Property = () => {
     getProperty(id)
   );
   const [modalOpen, setModalOpen] = useState(false);
+  const [isBooked, setIsBooked] = useState(false); // New state to track booking status
   const { validateLogin } = UseAuthChck();
   const { user } = useAuth0();
+
   if (isLoading) {
     return (
       <div className="h-64 flexCenter">
@@ -87,17 +89,18 @@ const Property = () => {
               }}
               className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm w-full"
             >
-              Book the visit
+              {isBooked ? "Cancel Booking" : "Book the visit"}
             </button>
             <BookingModel
               opened={modalOpen}
               setOpened={setModalOpen}
               propertyId={id}
               email={user?.email}
+              setIsBooked={setIsBooked}
             />
           </div>
         </div>
-        {/* right side */}
+
         <div className="flex-1">
           <Map
             address={data?.address}
