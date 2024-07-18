@@ -7,7 +7,6 @@ import {
   MdOutlineBed,
   MdOutlineGarage,
 } from "react-icons/md";
-import Heartbtn from "../components/Heartbtn";
 import { FaLocationDot } from "react-icons/fa6";
 import Map from "../components/Map";
 import { useState, useEffect } from "react";
@@ -57,9 +56,6 @@ const Property = () => {
           alt={title}
           className="rounded-xl max-h-[27rem] self-center w-full object-cover "
         />
-        <div className="absolute top-4 right-6">
-          <Heartbtn />
-        </div>
       </div>
       <div className="xl:flexBetween gap-8">
         <div className="flex-1">

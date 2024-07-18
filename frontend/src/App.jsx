@@ -3,7 +3,6 @@ import Home from "./Pages/Home";
 import Listing from "./Pages/Listing";
 import Property from "./Pages/Property";
 import Booking from "./Pages/Booking";
-import Favourites from "./Pages/Favourites";
 import AgentPage from "./Pages/AgentPage";
 import { Suspense, useState } from "react";
 import Layout from "./components/Layout";
@@ -39,7 +38,6 @@ const App = () => {
                 <Route path="/addproperty" element={<Property />} />
                 <Route path="/agent" element={<AgentPage />} />
                 <Route path="/booking" element={<Booking />} />
-                <Route path="/favourites" element={<Favourites />} />
               </Route>
             </Routes>
           </Suspense>

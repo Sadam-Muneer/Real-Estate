@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import Heartbtn from "./Heartbtn";
 import {
   MdOutlineBathtub,
   MdOutlineBed,
@@ -14,9 +13,6 @@ const Item = ({ property }) => {
     <div className="rounded-2xl p-3 bg-white">
       <div className="pb-2 relative">
         <img src={image} alt={title} className="rounded-xl" />
-        <div className="absolute top-4 right-6">
-          <Heartbtn />
-        </div>
       </div>
       <div className="flex justify-between items-center">
         <h5 className="bold-16 my-1 text-secondary">{city}</h5>
