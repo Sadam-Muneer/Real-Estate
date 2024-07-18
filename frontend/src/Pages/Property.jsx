@@ -23,34 +23,16 @@ const Property = () => {
     getProperty(id)
   );
   const [modalOpen, setModalOpen] = useState(false);
-  const [isBooked, setIsBooked] = useState(
-    localStorage.getItem("isBooked") === "true"
-  );
+  const [isBooked, setIsBooked] = useState(false);
   const [bookingDate, setBookingDate] = useState(null);
   const { validateLogin } = UseAuthChck();
   const { user } = useAuth0();
 
   useEffect(() => {
-    const storedIsBooked = localStorage.getItem("isBooked") === "true";
-    const storedBookingDate = localStorage.getItem("bookingDate");
-    setIsBooked(storedIsBooked);
-    setBookingDate(
-      storedIsBooked && storedBookingDate ? new Date(storedBookingDate) : null
-    );
-  }, []);
-
-  const handleSetIsBooked = (value) => {
-    setIsBooked(value);
-    if (value) {
-      const now = new Date();
-      setBookingDate(now);
-      localStorage.setItem("bookingDate", now.toISOString());
-    } else {
-      setBookingDate(null);
-      localStorage.removeItem("bookingDate");
-    }
-    localStorage.setItem("isBooked", value.toString());
-  };
+    const storedBookingDate = localStorage.getItem(`${id}_bookingDate`);
+    setBookingDate(storedBookingDate ? new Date(storedBookingDate) : null);
+    setIsBooked(localStorage.getItem(`${id}_isBooked`) === "true");
+  }, [id]);
 
   if (isLoading) {
     return (
@@ -122,7 +104,7 @@ const Property = () => {
               setOpened={setModalOpen}
               propertyId={id}
               email={user?.email}
-              setIsBooked={handleSetIsBooked}
+              setIsBooked={setIsBooked}
               setBookingDate={setBookingDate}
             />
           </div>
@@ -135,7 +117,6 @@ const Property = () => {
             )}
           </div>
         </div>
-
         <div className="flex-1">
           <Map
             address={data?.address}

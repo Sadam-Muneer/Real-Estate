@@ -1,11 +1,11 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Modal } from "@mantine/core";
 import { DatePicker } from "@mantine/dates";
 import { useMutation } from "react-query";
 import UserDetailsContext from "../context/UserDetailsContext";
 import { toast } from "react-toastify";
-import { bookVisit, cancelVisit } from "../utils/Api";
+import { bookVisit, cancelVisit } from "../utils/Api"; // Assuming you have a cancelVisit function
 
 const BookingModel = ({
   opened,
@@ -18,20 +18,29 @@ const BookingModel = ({
   const [selectedDate, setSelectedDate] = useState(null);
   const { userDetails } = useContext(UserDetailsContext);
 
+  useEffect(() => {
+    const storedBookingDate = localStorage.getItem(`${propertyId}_bookingDate`);
+    setSelectedDate(storedBookingDate ? new Date(storedBookingDate) : null);
+  }, [propertyId]);
+
   const handleBookingSuccessful = () => {
     toast.success("Visit booked successfully!");
-    setSelectedDate(null);
     setOpened(false);
     setIsBooked(true);
     setBookingDate(selectedDate);
-    localStorage.setItem("bookingDate", selectedDate.toISOString());
+    localStorage.setItem(
+      `${propertyId}_bookingDate`,
+      selectedDate.toISOString()
+    );
+    localStorage.setItem(`${propertyId}_isBooked`, "true");
   };
 
   const handleCancelBookingSuccessful = () => {
     setOpened(false);
     setIsBooked(false);
     setBookingDate(null);
-    localStorage.removeItem("bookingDate");
+    localStorage.removeItem(`${propertyId}_bookingDate`);
+    localStorage.removeItem(`${propertyId}_isBooked`);
   };
 
   const bookingMutation = useMutation(
