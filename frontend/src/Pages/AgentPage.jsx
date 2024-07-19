@@ -8,6 +8,8 @@ import nawaz from "../assets/sharif.jpg";
 import image2 from "../assets/hamza.jpg";
 import shahrukh from "../assets/shahrukh2.jpg";
 import FAQ from "../components/FAQ";
+import abdullah from "../assets/abdullah.jpg";
+import mudassir from "../assets/mudassir.jpg";
 import Testimonials from "../components/TestimonialSlider";
 const agents = [
   {
@@ -30,7 +32,7 @@ const agents = [
     phone: "+923022736698",
     whatsapp: "https://wa.me/923022736698",
     email: "abdullahmalik@gmail.com",
-    image: "https://via.placeholder.com/160",
+    image: abdullah,
   },
   {
     id: 3,
@@ -63,7 +65,7 @@ const agents = [
     phone: "+923144133994",
     whatsapp: "https://wa.me/923144133994",
     email: "mudassirnasir875@gmail.com",
-    image: "https://via.placeholder.com/150",
+    image: mudassir,
   },
   {
     id: 6,

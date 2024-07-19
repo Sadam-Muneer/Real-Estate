@@ -9,9 +9,6 @@ const ProfileMenu = ({ user, logout }) => {
           <Avatar src={user?.picture} alt="userimage" radius={"xl"} />
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item>Bookings</Menu.Item>
-          <Menu.Label>Applications</Menu.Label>
-          <Menu.Label>Go Back</Menu.Label>
           <Menu.Item
             onClick={() => {
               localStorage.clear();

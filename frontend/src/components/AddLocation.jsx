@@ -36,32 +36,30 @@ const AddLocation = ({ propertyDetails, setPropertyDetails, nextStep }) => {
         handleSubmit();
       }}
     >
-      <div className="flexCenter">
-        <div className="flexCenter flex-1">
-          <div>
-            <Select
-              w={"100%"}
-              withAsterisk
-              label="Country"
-              clearable
-              data={getAll()}
-              {...form.getInputProps("country")}
-            />
-            <TextInput
-              w={"100%"}
-              withAsterisk
-              label="City"
-              {...form.getInputProps("city")}
-            />
-            <TextInput
-              w={"100%"}
-              withAsterisk
-              label="Address"
-              {...form.getInputProps("address")}
-            />
-          </div>
+      <div className="flex flex-col md:flex-row">
+        <div className="flex-1 p-2">
+          <Select
+            w={"100%"}
+            withAsterisk
+            label="Country"
+            clearable
+            data={getAll()}
+            {...form.getInputProps("country")}
+          />
+          <TextInput
+            w={"100%"}
+            withAsterisk
+            label="City"
+            {...form.getInputProps("city")}
+          />
+          <TextInput
+            w={"100%"}
+            withAsterisk
+            label="Address"
+            {...form.getInputProps("address")}
+          />
         </div>
-        <div className="flex-1">
+        <div className="md:flex-1 p-2 md:mt-0 mt-4">
           <Map address={address} city={city} country={country} centered />
         </div>
       </div>
