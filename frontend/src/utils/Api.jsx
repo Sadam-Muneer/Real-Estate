@@ -16,7 +16,11 @@ export const getAllProperties = async () => {
     }
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
+    toast.error(
+      `Error fetching properties: ${
+        error.response?.data?.error || error.message
+      }`
+    );
     throw error;
   }
 };
@@ -31,7 +35,9 @@ export const getProperty = async (id) => {
     }
     return response.data;
   } catch (error) {
-    toast.error("Something went wrong");
+    toast.error(
+      `Error fetching property: ${error.response?.data?.error || error.message}`
+    );
     throw error;
   }
 };
@@ -70,7 +76,9 @@ export const bookVisit = async (date, propertyId, email, token) => {
       }
     );
   } catch (error) {
-    console.error("Something went wrong , please try again");
+    toast.error(
+      `Error booking visit: ${error.response?.data?.error || error.message}`
+    );
     throw error;
   }
 };
@@ -91,7 +99,28 @@ export const cancelVisit = async (propertyId, email, token) => {
     );
     toast.success("Visit canceled successfully");
   } catch (error) {
-    toast.error("Something went wrong, try again please");
+    toast.error(
+      `Error canceling visit: ${error.response?.data?.error || error.message}`
+    );
+    throw error;
+  }
+};
+
+export const createResidency = async (propertyDetails) => {
+  try {
+    const token = localStorage.getItem("authToken");
+    const response = await axios.post(
+      "http://localhost:8000/api/residency/residency",
+      propertyDetails,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error creating property:", error);
     throw error;
   }
 };

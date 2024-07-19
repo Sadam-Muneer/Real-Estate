@@ -5,10 +5,12 @@ import {
   MdOutlineGarage,
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+
 const Item = ({ property }) => {
   const { listType, image, title, city, description, price, facilities } =
     property;
   const navigate = useNavigate();
+
   return (
     <div className="rounded-2xl p-3 bg-white">
       <div className="pb-2 relative">
@@ -21,19 +23,18 @@ const Item = ({ property }) => {
       <h4 className="medium-18 line-clamp-1">{title}</h4>
       <div className="flex gap-x-2 py-2">
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineBed /> {facilities.bedroom}
+          <MdOutlineBed /> {facilities.bedrooms}
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineBathtub /> {facilities.bathroom}
+          <MdOutlineBathtub /> {facilities.bathrooms}
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineGarage /> {facilities.parking}
+          <MdOutlineGarage /> {facilities.parkings}
         </div>
       </div>
       <p className="pt-2 mb-4 line-clamp-2">{description}</p>
       <div className="flexBetween">
         <div className="bold-20">${price}.00</div>
-
         <button
           onClick={() => navigate(`../listing/${property.id}`)}
           className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
@@ -44,6 +45,7 @@ const Item = ({ property }) => {
     </div>
   );
 };
+
 Item.propTypes = {
   property: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -53,9 +55,9 @@ Item.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     facilities: PropTypes.shape({
-      bedroom: PropTypes.string.isRequired,
-      bathroom: PropTypes.string.isRequired,
-      parking: PropTypes.string.isRequired,
+      bedrooms: PropTypes.number.isRequired,
+      bathrooms: PropTypes.number.isRequired,
+      parkings: PropTypes.number.isRequired,
     }).isRequired,
     listType: PropTypes.string.isRequired,
   }).isRequired,

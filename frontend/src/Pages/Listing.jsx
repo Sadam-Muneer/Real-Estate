@@ -21,13 +21,7 @@ const Listing = () => {
     return (
       <div className="h-64 flexCenter">
         Data Loading...
-        <PuffLoader
-          hidden="80"
-          width="80"
-          radius={1}
-          color="#555"
-          aria-label="puff-loading"
-        />
+        <PuffLoader size={80} color="#555" aria-label="puff-loading" />
       </div>
     );
   }
@@ -84,7 +78,7 @@ const Listing = () => {
         {filteredProperties.length > 0 ? (
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10">
             {filteredProperties.map((property) => (
-              <Item key={property._id} property={property} />
+              <Item key={property.id} property={property} />
             ))}
           </div>
         ) : (

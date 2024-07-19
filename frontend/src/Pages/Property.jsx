@@ -18,7 +18,7 @@ const Property = () => {
   const { pathname } = useLocation();
   const id = pathname.split("/").slice(-1)[0];
 
-  const { data, isLoading, isError } = useQuery(["residency", id], () =>
+  const { data, isLoading, isError, error } = useQuery(["residency", id], () =>
     getProperty(id)
   );
   const [modalOpen, setModalOpen] = useState(false);
@@ -43,7 +43,12 @@ const Property = () => {
   }
 
   if (isError) {
-    return <div className="h-64 flexCenter">Error while fetching the data</div>;
+    console.error("Error while fetching the data:", error);
+    return (
+      <div className="h-64 flexCenter">
+        Error while fetching the data: {error.message}
+      </div>
+    );
   }
 
   const { image, title, city, description, price, facilities, listType } = data;

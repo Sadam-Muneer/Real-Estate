@@ -1,7 +1,5 @@
 import asyncHandler from "express-async-handler";
 import { prisma } from "../Config/PrismaConfig.js";
-
-// Create a new residency
 export const createResidency = asyncHandler(async (req, res) => {
   const {
     title,
@@ -13,16 +11,23 @@ export const createResidency = asyncHandler(async (req, res) => {
     facilities,
     image,
     userEmail,
-    listType, // Add listType here
-  } = req.body.data;
+    listType,
+  } = req.body;
+  console.log("Received userEmail:", userEmail);
 
   // Validate listType
   const validListTypes = ["SELL", "BUY", "RENT"];
   if (!listType || !validListTypes.includes(listType)) {
-    return res.status(400).json({ error: "Invalid listType value" });
+    return res.status(400).json({
+      error: "Invalid listType value. It should be one of SELL, BUY, or RENT.",
+    });
   }
 
   try {
+    if (!userEmail) {
+      return res.status(400).json({ error: "User email is required" });
+    }
+
     let user = await prisma.user.findUnique({
       where: { email: userEmail },
     });
@@ -34,7 +39,6 @@ export const createResidency = asyncHandler(async (req, res) => {
         },
       });
     }
-
     const residency = await prisma.residency.create({
       data: {
         title,
@@ -43,9 +47,9 @@ export const createResidency = asyncHandler(async (req, res) => {
         address,
         country,
         city,
-        facilities, // Assume facilities is already a JSON object
+        facilities,
         image,
-        listType, // Include listType here
+        listType,
         owner: { connect: { email: userEmail } },
       },
     });
@@ -55,14 +59,18 @@ export const createResidency = asyncHandler(async (req, res) => {
       residency,
     });
   } catch (error) {
+    console.error("Error creating residency:", error);
     if (error.code === "P2002") {
-      res
-        .status(400)
-        .json({ error: "A Residency with this address already exists." });
+      res.status(400).json({
+        error:
+          "A Residency with this address already exists. Please check the address and try again.",
+      });
     } else {
-      res
-        .status(500)
-        .json({ error: "Internal server error", details: error.message });
+      res.status(500).json({
+        error:
+          "Internal server error. Something went wrong, please try again later.",
+        details: error.message,
+      });
     }
   }
 });

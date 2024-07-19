@@ -43,7 +43,6 @@ export const bookVisit = asyncHandler(async (req, res) => {
         .json({ message: "This Residency is Already Booked By You" });
     }
 
-    // Assuming `prisma.user.update` correctly updates the user's booked visits
     await prisma.user.update({
       where: { email },
       data: {
@@ -59,7 +58,6 @@ export const bookVisit = asyncHandler(async (req, res) => {
   }
 });
 
-/// Get all booked visits for a specific user by email
 export const allBookedVisits = asyncHandler(async (req, res) => {
   const { email } = req.body;
   try {
