@@ -23,13 +23,13 @@ const Item = ({ property }) => {
       <h4 className="medium-18 line-clamp-1">{title}</h4>
       <div className="flex gap-x-2 py-2">
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineBed /> {facilities.bedrooms}
+          <MdOutlineBed /> {facilities.bedroom}
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineBathtub /> {facilities.bathrooms}
+          <MdOutlineBathtub /> {facilities.bathroom}
         </div>
         <div className="flexCenter gap-x-2 border-r border-slate-900/50 pr-4 font-[500]">
-          <MdOutlineGarage /> {facilities.parkings}
+          <MdOutlineGarage /> {facilities.parking}
         </div>
       </div>
       <p className="pt-2 mb-4 line-clamp-2">{description}</p>
@@ -55,9 +55,9 @@ Item.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     facilities: PropTypes.shape({
-      bedrooms: PropTypes.number.isRequired,
-      bathrooms: PropTypes.number.isRequired,
-      parkings: PropTypes.number.isRequired,
+      bedroom: PropTypes.number.isRequired,
+      bathroom: PropTypes.number.isRequired,
+      parking: PropTypes.number.isRequired,
     }).isRequired,
     listType: PropTypes.string.isRequired,
   }).isRequired,

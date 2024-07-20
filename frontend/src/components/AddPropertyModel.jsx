@@ -21,9 +21,9 @@ const AddPropertyModel = ({ opened, setOpened }) => {
     address: "",
     image: null,
     facilities: {
-      bedrooms: "",
-      bathrooms: "",
-      parkings: "",
+      bedroom: "",
+      bathroom: "",
+      parking: "",
     },
     listType: "",
     userEmail: "",

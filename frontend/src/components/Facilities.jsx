@@ -19,18 +19,18 @@ const Facilities = ({
 }) => {
   const form = useForm({
     initialValues: {
-      bedrooms: propertyDetails?.facilities?.bedrooms || 0,
-      bathrooms: propertyDetails?.facilities?.bathrooms || 0,
-      parkings: propertyDetails?.facilities?.parkings || 0,
+      bedroom: propertyDetails?.facilities?.bedroom || 0,
+      bathroom: propertyDetails?.facilities?.bathroom || 0,
+      parking: propertyDetails?.facilities?.parking || 0,
     },
     validate: {
-      bedrooms: (value) => validatefacilitiesString(value),
-      bathrooms: (value) => validatefacilitiesString(value),
-      parkings: (value) => validatefacilitiesString(value),
+      bedroom: (value) => validatefacilitiesString(value),
+      bathroom: (value) => validatefacilitiesString(value),
+      parking: (value) => validatefacilitiesString(value),
     },
   });
 
-  const { bedrooms, bathrooms, parkings } = form.values;
+  const { bedroom, bathroom, parking } = form.values;
 
   const { user } = useAuth0();
   const {
@@ -43,7 +43,7 @@ const Facilities = ({
       createResidency(
         {
           ...propertyDetails,
-          facilities: { bedrooms, bathrooms, parkings },
+          facilities: { bedroom, bathroom, parking },
         },
         token,
         user?.email
@@ -61,9 +61,9 @@ const Facilities = ({
         address: "",
         image: null,
         facilities: {
-          bedrooms: 0,
-          bathrooms: 0,
-          parkings: 0,
+          bedroom: 0,
+          bathroom: 0,
+          parking: 0,
         },
         userEmail: user?.email,
       });
@@ -89,7 +89,7 @@ const Facilities = ({
     if (!hasError) {
       setPropertyDetails((prev) => ({
         ...prev,
-        facilities: { bedrooms, bathrooms, parkings },
+        facilities: { bedroom, bathroom, parking },
       }));
       mutate();
     }
@@ -103,21 +103,21 @@ const Facilities = ({
             <div>
               <NumberInput
                 withAsterisk
-                label="No of Bedrooms"
+                label="No of bedroom"
                 min={0}
-                {...form.getInputProps("bedrooms", { type: "number" })}
+                {...form.getInputProps("bedroom", { type: "number" })}
               />
               <NumberInput
                 withAsterisk
-                label="No of Bathrooms"
+                label="No of bathroom"
                 min={0}
-                {...form.getInputProps("bathrooms", { type: "number" })}
+                {...form.getInputProps("bathroom", { type: "number" })}
               />
               <NumberInput
                 withAsterisk
-                label="No of Parkings"
+                label="No of parking"
                 min={0}
-                {...form.getInputProps("parkings", { type: "number" })}
+                {...form.getInputProps("parking", { type: "number" })}
               />
             </div>
           </div>
@@ -139,9 +139,9 @@ Facilities.propTypes = {
   prevStep: PropTypes.func.isRequired,
   propertyDetails: PropTypes.shape({
     facilities: PropTypes.shape({
-      bedrooms: PropTypes.number,
-      bathrooms: PropTypes.number,
-      parkings: PropTypes.number,
+      bedroom: PropTypes.number,
+      bathroom: PropTypes.number,
+      parking: PropTypes.number,
     }),
   }).isRequired,
   setPropertyDetails: PropTypes.func.isRequired,
