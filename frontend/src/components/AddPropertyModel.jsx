@@ -26,15 +26,14 @@ const AddPropertyModel = ({ opened, setOpened }) => {
       parkings: "",
     },
     listType: "",
-    userEmail: "", // Initialize with empty string
+    userEmail: "",
   });
 
   useEffect(() => {
-    // Ensure user is authenticated and set user email
     if (isAuthenticated && user) {
       setPropertyDetails((prevDetails) => ({
         ...prevDetails,
-        userEmail: user.email || "", // Fallback to empty string if user.email is undefined
+        userEmail: user.email || "",
       }));
     }
   }, [isAuthenticated, user]);

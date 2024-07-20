@@ -13,7 +13,7 @@ const BasicDetails = ({
     initialValues: {
       title: propertyDetails?.title || "",
       description: propertyDetails?.description || "",
-      price: propertyDetails?.price || "",
+      price: propertyDetails?.price.toString() || "", // Convert to string
       listType: propertyDetails?.listType || "",
     },
     validate: {
@@ -33,7 +33,7 @@ const BasicDetails = ({
         ...prev,
         title: form.values.title,
         description: form.values.description,
-        price: parseInt(form.values.price, 10), // Convert to integer
+        price: parseFloat(form.values.price), // Convert back to float
         listType: form.values.listType,
       }));
       nextStep();
@@ -83,7 +83,7 @@ BasicDetails.propTypes = {
   propertyDetails: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    price: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // Allow both string and number
     listType: PropTypes.string,
   }).isRequired,
   setPropertyDetails: PropTypes.func.isRequired,

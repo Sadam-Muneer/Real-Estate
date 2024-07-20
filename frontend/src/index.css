@@ -14,6 +14,32 @@
   font-family: "Bruno Ace", sans-serif;
 }
 
+.rc-slider-track {
+  background-color: #4a90e2; /* Secondary color */
+}
+
+/* Slider handle */
+.rc-slider-handle {
+  border-color: #4a90e2; /* Secondary color */
+  background-color: #4a90e2; /* Secondary color */
+}
+
+/* Slider rail (the part that remains when the slider handle moves) */
+.rc-slider-rail {
+  background-color: #d0d0d0; /* Rail color */
+}
+
+/* Styling for the range handles */
+.rc-slider-handle-1 {
+  border-color: #4a90e2; /* Secondary color */
+  background-color: #4a90e2; /* Secondary color */
+}
+
+.rc-slider-handle-2 {
+  border-color: #4a90e2; /* Secondary color */
+  background-color: #4a90e2; /* Secondary color */
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
