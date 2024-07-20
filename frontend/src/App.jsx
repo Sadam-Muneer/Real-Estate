@@ -11,7 +11,6 @@ import { ToastContainer } from "react-toastify";
 import { ReactQueryDevtools } from "react-query/devtools";
 import "react-toastify/dist/ReactToastify.css";
 import UserDetailsContext from "./context/UserDetailsContext";
-
 const App = () => {
   const queryClient = new QueryClient();
   const [userDetails, setUserDetails] = useState({

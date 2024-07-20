@@ -9,11 +9,17 @@ const Listing = () => {
   const [category, setCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
+  const [bedrooms, setBedrooms] = useState(""); // State for bedrooms
+  const [bathrooms, setBathrooms] = useState(""); // State for bathrooms
+  const [parking, setParking] = useState(""); // State for parking
 
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
     if (newCategory === "All") {
       setSelectedCity(""); // Reset selected city when "All" category is selected
+      setBedrooms("");
+      setBathrooms("");
+      setParking("");
     }
   };
 
@@ -25,11 +31,23 @@ const Listing = () => {
     setSelectedCity(event.target.value);
   };
 
+  const handleBedroomsChange = (event) => {
+    setBedrooms(event.target.value);
+  };
+
+  const handleBathroomsChange = (event) => {
+    setBathrooms(event.target.value);
+  };
+
+  const handleParkingChange = (event) => {
+    setParking(event.target.value);
+  };
+
   if (isLoading) {
     return (
       <div className="h-64 flexCenter">
         Data Loading...
-        <PuffLoader size={80} color="#555" aria-label="puff-loading" />
+        <PuffLoader size={80} color="#555" />
       </div>
     );
   }
@@ -46,7 +64,28 @@ const Listing = () => {
       property.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
       property.country.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCity = selectedCity === "" || property.city === selectedCity;
-    return matchesCategory && matchesSearchTerm && matchesCity;
+
+    // Convert input values to numbers or default to 0 if empty
+    const inputBedrooms = bedrooms ? parseInt(bedrooms, 10) : 0;
+    const inputBathrooms = bathrooms ? parseInt(bathrooms, 10) : 0;
+    const inputParking = parking ? parseInt(parking, 10) : 0;
+
+    // Property values are checked against inputs if inputs are provided
+    const matchesBedrooms =
+      !bedrooms || property.facilities.bedroom >= inputBedrooms;
+    const matchesBathrooms =
+      !bathrooms || property.facilities.bathroom >= inputBathrooms;
+    const matchesParking =
+      !parking || property.facilities.parking >= inputParking;
+
+    return (
+      matchesCategory &&
+      matchesSearchTerm &&
+      matchesCity &&
+      matchesBedrooms &&
+      matchesBathrooms &&
+      matchesParking
+    );
   });
 
   return (
@@ -85,7 +124,7 @@ const Listing = () => {
           </button>
         </div>
         <div className="flex mt-8">
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 mr-4">
             <h4>City</h4>
             <select
               value={selectedCity}
@@ -96,6 +135,36 @@ const Listing = () => {
               <option value="Lahore">Lahore</option>
               <option value="Multan">Multan</option>
             </select>
+          </div>
+          <div className="flex-shrink-0 mr-4">
+            <h4>Bedrooms</h4>
+            <input
+              type="number"
+              value={bedrooms}
+              onChange={handleBedroomsChange}
+              className="border rounded-md p-2"
+              placeholder="Any"
+            />
+          </div>
+          <div className="flex-shrink-0 mr-4">
+            <h4>Bathrooms</h4>
+            <input
+              type="number"
+              value={bathrooms}
+              onChange={handleBathroomsChange}
+              className="border rounded-md p-2"
+              placeholder="Any"
+            />
+          </div>
+          <div className="flex-shrink-0">
+            <h4>Parking</h4>
+            <input
+              type="number"
+              value={parking}
+              onChange={handleParkingChange}
+              className="border rounded-md p-2"
+              placeholder="Any"
+            />
           </div>
         </div>
         {filteredProperties.length > 0 ? (
