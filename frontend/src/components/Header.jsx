@@ -49,7 +49,7 @@ const Header = () => {
         <div className="flexBetween py-3">
           <Link to="/">
             <span className="font-[900] text-[24px]">
-              Real <span className="font-[600] medium-20">Estate</span>
+              Sadam <span className="font-[600] medium-20">Real Estate</span>
             </span>
           </Link>
           <div className="flexCenter gap-x-4">
