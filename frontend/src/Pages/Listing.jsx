@@ -110,7 +110,7 @@ const Listing = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <div className="flex space-x-4 mt-8 items-center justify-between">
+        <div className="flex space-x-4 mt-8">
           <button
             onClick={() => handleCategoryChange("All")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
@@ -135,25 +135,9 @@ const Listing = () => {
           >
             RENT
           </button>
-          <div className="flex-grow pl-32">
-            <h4>Price Range</h4>
-            <Slider
-              range
-              min={0}
-              max={1000000}
-              defaultValue={priceRange}
-              onChange={handlePriceRangeChange}
-              value={priceRange}
-              className="mt-2"
-            />
-            <div className="flex justify-between text-xs mt-1">
-              <span>PKR {priceRange[0]}</span>
-              <span>PKR {priceRange[1]}</span>
-            </div>
-          </div>
         </div>
         <div className="flex mt-8">
-          <div className="flex-shrink-0 mr-4">
+          <div className="mr-4">
             <h4>City</h4>
             <select
               value={selectedCity}
@@ -196,7 +180,22 @@ const Listing = () => {
             />
           </div>
         </div>
-
+        <div>
+          <h4>Price Range</h4>
+          <Slider
+            range
+            min={0}
+            max={1000000}
+            defaultValue={priceRange}
+            onChange={handlePriceRangeChange}
+            value={priceRange}
+            className="mt-2"
+          />
+          <div className="flex justify-between text-xs mt-1">
+            <span>PKR {priceRange[0]}</span>
+            <span>PKR {priceRange[1]}</span>
+          </div>
+        </div>
         {filteredProperties.length > 0 ? (
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10">
             {filteredProperties.map((property) => (
