@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       domain="dev-pcwp2gensj50g46z.us.auth0.com"
       clientId="uxV8Y935ngwpVrzzar92YM5G18MSQoxw"
       authorizationParams={{
-        redirect_uri: "https://realestate-brown-two.vercel.app/",
+        redirect_uri: "https://realestate-yt.vercel.app/",
       }}
       onRedirectCallback={onRedirectCallback}
       cacheLocation="localstorage"
