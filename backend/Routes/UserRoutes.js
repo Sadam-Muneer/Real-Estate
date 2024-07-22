@@ -6,7 +6,6 @@ import {
   createUser,
 } from "../Controllers/UserControllers.js";
 import jwtCheck from "../Config/Auth0Config.js";
-
 const router = express.Router();
 
 router.post("/register", jwtCheck, createUser);

@@ -8,11 +8,13 @@ const UseAuthChck = () => {
 
   const saveUserDetails = async (user) => {
     try {
-      await axios.post("/api/users/register", {
+      console.log("Sending user details to backend:", user);
+      const response = await axios.post("/api/users/register", {
         email: user.email,
         name: user.name,
         // Add any other user details you want to save
       });
+      console.log("User details saved successfully:", response.data);
     } catch (error) {
       console.error("Error saving user details:", error);
       toast.error("Failed to save user details", { position: "bottom-right" });

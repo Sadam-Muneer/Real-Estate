@@ -3,33 +3,38 @@ import { prisma } from "../Config/PrismaConfig.js";
 
 // Function to create or update a user
 export const createUser = asyncHandler(async (req, res) => {
-  console.log("Creating or updating a user");
+  console.log("Received request to create or update user");
   const { email, name } = req.body;
+  console.log("User details received:", { email, name });
 
   try {
     const userExists = await prisma.user.findUnique({ where: { email } });
-
     if (userExists) {
+      console.log("User exists, updating user:", email);
       // Update existing user
       const updatedUser = await prisma.user.update({
         where: { email },
         data: { name },
       });
+      console.log("User updated successfully:", updatedUser);
       res.status(200).send({
         message: "User Updated Successfully",
         user: updatedUser,
       });
     } else {
+      console.log("User does not exist, creating user:", email);
       // Create new user
       const newUser = await prisma.user.create({
         data: { email, name },
       });
+      console.log("User created successfully:", newUser);
       res.status(201).send({
         message: "User Registered Successfully",
         user: newUser,
       });
     }
   } catch (error) {
+    console.error("Error handling user details:", error);
     res.status(500).send({
       message: "Internal server error",
       details: error.message,
@@ -37,7 +42,8 @@ export const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// Book Visit
+// to book a visit to resident
+
 export const bookVisit = asyncHandler(async (req, res) => {
   console.log("Request body:", req.body); // Add this line for debugging
   const { email, date } = req.body;
@@ -60,10 +66,7 @@ export const bookVisit = asyncHandler(async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    if (
-      user.bookedVisits &&
-      user.bookedVisits.some((visit) => visit.id === id)
-    ) {
+    if (user.bookedVisits.some((visit) => visit.id === id)) {
       return res
         .status(400)
         .json({ message: "This Residency is Already Booked By You" });
@@ -76,7 +79,7 @@ export const bookVisit = asyncHandler(async (req, res) => {
       },
     });
 
-    res.status(200).json({ message: "Your visit is booked successfully" });
+    res.send("Your visit is booked successfully");
   } catch (error) {
     res
       .status(500)
@@ -84,7 +87,6 @@ export const bookVisit = asyncHandler(async (req, res) => {
   }
 });
 
-// All Booked Visits
 export const allBookedVisits = asyncHandler(async (req, res) => {
   const { email } = req.body;
   try {
@@ -92,11 +94,6 @@ export const allBookedVisits = asyncHandler(async (req, res) => {
       where: { email },
       select: { bookedVisits: true },
     });
-
-    if (!Bookings) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
     res.status(200).json(Bookings);
   } catch (error) {
     res
@@ -104,8 +101,7 @@ export const allBookedVisits = asyncHandler(async (req, res) => {
       .json({ message: "Internal server error", details: error.message });
   }
 });
-
-// Cancel Bookings
+// cancelBookings
 export const cancelBookings = asyncHandler(async (req, res) => {
   const { email } = req.body;
   const { id } = req.params;
@@ -114,27 +110,20 @@ export const cancelBookings = asyncHandler(async (req, res) => {
       where: { email: email },
       select: { bookedVisits: true },
     });
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
     const index = user.bookedVisits.findIndex((visit) => visit.id === id);
     if (index === -1) {
-      return res.status(400).json({ message: "Booking not found" });
+      res.status(400).json({ message: "Booking not found" });
+    } else {
+      user.bookedVisits.splice(index, 1);
+      await prisma.user.update({
+        where: { email },
+        data: {
+          bookedVisits: user.bookedVisits,
+        },
+      });
+      res.send("Booking has been Canceled Successfully");
     }
-
-    user.bookedVisits.splice(index, 1);
-    await prisma.user.update({
-      where: { email },
-      data: {
-        bookedVisits: user.bookedVisits,
-      },
-    });
-    res.status(200).json({ message: "Booking has been Canceled Successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Internal server error", details: error.message });
+    throw new Error(error.message);
   }
 });
