@@ -7,7 +7,7 @@ const Searchbar = ({ searchTerm, onSearchChange }) => {
       <div className="flexBetween pl-6 h-[3.3rem] bg-white w-full max-w-[366px] rounded-full ring-1 ring-slate-500/5">
         <input
           type="text"
-          placeholder="Enter residency name/city/country"
+          placeholder="Search residency"
           className="bg-transparent border-none outline-none w-full"
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}

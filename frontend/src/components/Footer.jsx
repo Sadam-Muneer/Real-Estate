@@ -20,16 +20,6 @@ const Footer = () => {
               Explore our listings and find your dream home today. Start your
               journey to homeownership with us.
             </p>
-            <div className="flex justify-between h-[3.3rem] bg-white w-full max-w-[366px] rounded-full ring-1 ring-slate-500/5">
-              <input
-                type="email"
-                placeholder="Enter Your Email"
-                className="bg-transparent border-none outline-none pl-1 md:mx-2"
-              />
-              <button className="btn-secondary rounded-full relative ring-[0.30rem]">
-                Subscribe
-              </button>
-            </div>
           </div>
           <div className="flex justify-between flex-wrap gap-8">
             {FOOTER_LINK.map((col) => (

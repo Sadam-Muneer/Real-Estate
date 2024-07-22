@@ -110,32 +110,33 @@ const Listing = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <div className="flex space-x-4 mt-8 ">
+        <div className="flex mt-8 space-x-2">
           <button
             onClick={() => handleCategoryChange("All")}
-            className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
+            className="btn-category btn-secondary rounded-xl !py-[7px]  shadow-sm mb-2 sm:mb-0 sm:w-auto w-full px-2 "
           >
             All
           </button>
           <button
             onClick={() => handleCategoryChange("BUY")}
-            className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
+            className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full  "
           >
             BUY
           </button>
           <button
             onClick={() => handleCategoryChange("SELL")}
-            className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
+            className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full "
           >
             SELL
           </button>
           <button
             onClick={() => handleCategoryChange("RENT")}
-            className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
+            className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full "
           >
             RENT
           </button>
         </div>
+
         <div className="flex flex-wrap mt-8">
           <div className="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
             <h4>City</h4>
