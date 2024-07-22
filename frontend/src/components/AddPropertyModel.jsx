@@ -98,10 +98,7 @@ const AddPropertyModel = ({ opened, setOpened }) => {
               setActiveStep={setActiveStep}
             />
           </Stepper.Step>
-
-          <Stepper.Completed>
-            {/* Optionally add a completion step or final summary here */}
-          </Stepper.Completed>
+          <Stepper.Completed></Stepper.Completed>
         </Stepper>
       </Container>
     </Modal>
