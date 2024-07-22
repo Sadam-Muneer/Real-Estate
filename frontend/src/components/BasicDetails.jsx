@@ -1,7 +1,6 @@
 import { Box, Button, Group, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import PropTypes from "prop-types";
-import { validatefacilitiesString } from "../utils/Common";
 
 const BasicDetails = ({
   prevStep,
@@ -15,12 +14,6 @@ const BasicDetails = ({
       description: propertyDetails?.description || "",
       price: propertyDetails?.price.toString() || "", // Convert to string
       listType: propertyDetails?.listType || "",
-    },
-    validate: {
-      title: (value) => validatefacilitiesString(value),
-      description: (value) => validatefacilitiesString(value),
-      price: (value) => validatefacilitiesString(value),
-      listType: (value) => (value ? null : "List type is required"),
     },
   });
 
