@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -11,6 +11,8 @@ const Layout = () => {
   const { isAuthenticated, user, loginWithPopup, getAccessTokenWithPopup } =
     useAuth0();
   const { userDetails, setUserDetails } = useContext(UserDetailsContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const { mutate } = useMutation((token) => createUser(user?.email, token), {
     mutationKey: [user?.email],
@@ -34,6 +36,8 @@ const Layout = () => {
       if (isAuthenticated) {
         console.log("User is authenticated, attempting to create user...");
         mutate(token);
+        // Navigate to the previous location after successful login
+        navigate(location.state?.from || "/", { replace: true });
       }
     } catch (error) {
       console.error("Error getting token or registering user:", error);
@@ -46,12 +50,18 @@ const Layout = () => {
     }
   }, [isAuthenticated, userDetails.token]);
 
+  // Check if we are on the `/listing` page and the user is not authenticated
+  const isListingPage = location.pathname === "/listing";
+  const shouldShowLoginButton = isListingPage && !isAuthenticated;
+
   return (
     <>
       <div>
         <Header />
-        {!isAuthenticated ? (
-          <button onClick={handleLogin}></button>
+        {shouldShowLoginButton ? (
+          <div>
+            <button onClick={handleLogin}>Login to View Listings</button>
+          </div>
         ) : (
           <Outlet />
         )}

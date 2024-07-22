@@ -8,7 +8,6 @@ import { useMutation } from "react-query";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 import { createResidency } from "../utils/Api";
-import { validatefacilitiesString } from "../utils/Common";
 
 const Facilities = ({
   prevStep,
@@ -22,11 +21,6 @@ const Facilities = ({
       bedroom: propertyDetails?.facilities?.bedroom || 0,
       bathroom: propertyDetails?.facilities?.bathroom || 0,
       parking: propertyDetails?.facilities?.parking || 0,
-    },
-    validate: {
-      bedroom: (value) => validatefacilitiesString(value),
-      bathroom: (value) => validatefacilitiesString(value),
-      parking: (value) => validatefacilitiesString(value),
     },
   });
 
