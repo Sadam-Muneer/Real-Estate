@@ -182,7 +182,7 @@ const Listing = () => {
           </div>
         </div>
 
-        <div>
+        <div className="w-full sm:w-1/2 mx-auto py-2">
           <h4>Price Range</h4>
           <Slider
             range
@@ -191,7 +191,6 @@ const Listing = () => {
             defaultValue={priceRange}
             onChange={handlePriceRangeChange}
             value={priceRange}
-            className="mt-2"
           />
           <div className="flex justify-between text-xs mt-1">
             <span>PKR {priceRange[0]}</span>
