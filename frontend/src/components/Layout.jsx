@@ -6,6 +6,7 @@ import { useContext, useEffect } from "react";
 import UserDetailsContext from "../context/UserDetailsContext";
 import { useMutation } from "react-query";
 import { createUser } from "../utils/Api";
+import { toast } from "react-toastify";
 
 const Layout = () => {
   const { isAuthenticated, user, loginWithPopup, getAccessTokenWithPopup } =
@@ -50,27 +51,24 @@ const Layout = () => {
     }
   }, [isAuthenticated, userDetails.token]);
 
-  // Function to check if the current path is a listing page
-  const isListingPage = () => {
-    const path = location.pathname;
-    return path.startsWith("/listing") || path.includes("/listing/");
-  };
+  // Function to check if the current path is the "Add Properties" page
+  const isAddPropertiesPage = location.pathname === "/add-property";
 
-  const shouldShowLoginButton = isListingPage() && !isAuthenticated;
+  useEffect(() => {
+    if (isAddPropertiesPage && !isAuthenticated) {
+      toast.info("Please login to add properties.", {
+        position: "top-right",
+        autoClose: 5000,
+        onClose: () => handleLogin(), // Trigger login on toast close
+      });
+    }
+  }, [isAddPropertiesPage, isAuthenticated]);
 
   return (
     <>
       <div>
         <Header />
-        {shouldShowLoginButton ? (
-          <div className="pt-28 pb-10 max-padd-container">
-            <button onClick={handleLogin}>
-              Please Login to View the Listings
-            </button>
-          </div>
-        ) : (
-          <Outlet />
-        )}
+        <Outlet />
       </div>
       <Footer />
     </>
