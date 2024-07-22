@@ -20,7 +20,7 @@ const agents = [
     experience: "5 years",
     phone: "+923467133632",
     whatsapp: "https://wa.me/923467133632",
-    email: "shahrukhnazar@gmail.com",
+    email: "shahrukh@gmail.com",
     image: shahrukh,
   },
   {
@@ -53,7 +53,7 @@ const agents = [
     experience: "4 years",
     phone: "+923044561544",
     whatsapp: "https://wa.me/923044561544",
-    email: "sadammunir@gmail.com",
+    email: "sadam@gmail.com",
     image: image,
   },
   {
@@ -64,7 +64,7 @@ const agents = [
     experience: "2 years",
     phone: "+923144133994",
     whatsapp: "https://wa.me/923144133994",
-    email: "mudassirnasir@gmail.com",
+    email: "mudassir@gmail.com",
     image: mudassir,
   },
   {
@@ -86,7 +86,7 @@ const agents = [
     experience: "3 years",
     phone: "+923043265234",
     whatsapp: "https://wa.me/923043265234",
-    email: "chahatfateh@gmail.com",
+    email: "chahat@gmail.com",
     image:
       "https://i0.wp.com/celebrityspot.com.ng/wp-content/uploads/2024/04/1714254719093.jpg?ssl=1",
   },
@@ -124,7 +124,7 @@ const AgentPage = () => {
         <div className="flexBetween pl-6 h-[3.3rem] bg-white w-full max-w-[366px] rounded-full ring-1 ring-slate-500/5">
           <input
             type="text"
-            placeholder="Search Agent by Name"
+            placeholder="Search Agent"
             className="bg-transparent border-none outline-none w-full"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
