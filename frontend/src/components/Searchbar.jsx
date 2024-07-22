@@ -12,13 +12,11 @@ const Searchbar = ({ searchTerm, onSearchChange }) => {
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
         />
-
         <FaLocationDot className="relative right-4 text-xl hover:text-secondary cursor-pointer" />
       </div>
     </>
   );
 };
-
 Searchbar.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   onSearchChange: PropTypes.func.isRequired,

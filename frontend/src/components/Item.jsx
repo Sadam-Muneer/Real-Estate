@@ -34,9 +34,9 @@ const Item = ({ property }) => {
       </div>
       <p className="pt-2 mb-4 line-clamp-2">{description}</p>
       <div className="flexBetween">
-        <div className="bold-20">${price}.00</div>
+        <div className="bold-20">{price}.00 PKR</div>
         <button
-          onClick={() => navigate(`../listing/${property.id}`)}
+          onClick={() => navigate(`../listing/{property.id} PKR`)}
           className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
         >
           View Details

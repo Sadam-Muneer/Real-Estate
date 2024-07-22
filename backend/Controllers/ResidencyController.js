@@ -81,6 +81,7 @@ export const getAllResidencies = asyncHandler(async (req, res) => {
     const residencies = await prisma.residency.findMany({
       orderBy: {
         createdAt: "desc",
+        // asc
       },
     });
     res.send(residencies);

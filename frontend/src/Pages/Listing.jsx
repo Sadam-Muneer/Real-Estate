@@ -3,6 +3,8 @@ import Item from "../components/Item";
 import Searchbar from "../components/Searchbar";
 import useProperties from "../hooks/useProperties";
 import { PuffLoader } from "react-spinners";
+import Slider from "rc-slider"; // Import the slider component
+import "rc-slider/assets/index.css"; // Import the slider styles
 
 const Listing = () => {
   const { data: properties, isError, isLoading } = useProperties();
@@ -12,6 +14,7 @@ const Listing = () => {
   const [bedrooms, setBedrooms] = useState(""); // State for bedrooms
   const [bathrooms, setBathrooms] = useState(""); // State for bathrooms
   const [parking, setParking] = useState(""); // State for parking
+  const [priceRange, setPriceRange] = useState([0, 1000000]); // State for price range
 
   const handleCategoryChange = (newCategory) => {
     setCategory(newCategory);
@@ -20,6 +23,7 @@ const Listing = () => {
       setBedrooms("");
       setBathrooms("");
       setParking("");
+      setPriceRange([0, 1000000]); // Reset price range when "All" category is selected
     }
   };
 
@@ -41,6 +45,10 @@ const Listing = () => {
 
   const handleParkingChange = (event) => {
     setParking(event.target.value);
+  };
+
+  const handlePriceRangeChange = (newRange) => {
+    setPriceRange(newRange);
   };
 
   if (isLoading) {
@@ -78,13 +86,18 @@ const Listing = () => {
     const matchesParking =
       !parking || property.facilities.parking >= inputParking;
 
+    // Check if property price falls within the selected price range
+    const matchesPriceRange =
+      property.price >= priceRange[0] && property.price <= priceRange[1];
+
     return (
       matchesCategory &&
       matchesSearchTerm &&
       matchesCity &&
       matchesBedrooms &&
       matchesBathrooms &&
-      matchesParking
+      matchesParking &&
+      matchesPriceRange
     );
   });
 
@@ -97,7 +110,7 @@ const Listing = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <div className="flex space-x-4 mt-8">
+        <div className="flex space-x-4 mt-8 items-center justify-between">
           <button
             onClick={() => handleCategoryChange("All")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
@@ -122,6 +135,22 @@ const Listing = () => {
           >
             RENT
           </button>
+          <div className="flex-grow pl-32">
+            <h4>Price Range</h4>
+            <Slider
+              range
+              min={0}
+              max={1000000}
+              defaultValue={priceRange}
+              onChange={handlePriceRangeChange}
+              value={priceRange}
+              className="mt-2"
+            />
+            <div className="flex justify-between text-xs mt-1">
+              <span>PKR {priceRange[0]}</span>
+              <span>PKR {priceRange[1]}</span>
+            </div>
+          </div>
         </div>
         <div className="flex mt-8">
           <div className="flex-shrink-0 mr-4">
@@ -156,7 +185,7 @@ const Listing = () => {
               placeholder="Any"
             />
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 mr-4">
             <h4>Parking</h4>
             <input
               type="number"
@@ -167,6 +196,7 @@ const Listing = () => {
             />
           </div>
         </div>
+
         {filteredProperties.length > 0 ? (
           <div className="grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mt-10">
             {filteredProperties.map((property) => (
