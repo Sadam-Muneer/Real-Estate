@@ -106,11 +106,10 @@ export const cancelVisit = async (propertyId, email, token) => {
   }
 };
 
-export const createResidency = async (propertyDetails) => {
+export const createResidency = async (propertyDetails, token) => {
   try {
-    const token = localStorage.getItem("authToken");
     const response = await axios.post(
-      "http://localhost:8000/api/residency/residency",
+      "https://realestate-yt-backend-psi-ebon.vercel.app/api/residency/residency",
       propertyDetails,
       {
         headers: {

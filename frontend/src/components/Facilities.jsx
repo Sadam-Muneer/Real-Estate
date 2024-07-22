@@ -91,7 +91,6 @@ const Facilities = ({
         ...prev,
         facilities: { bedroom, bathroom, parking },
       }));
-      console.log("Submitting property with token:", token); // Log the token value
       mutate();
     }
   };
