@@ -50,17 +50,23 @@ const Layout = () => {
     }
   }, [isAuthenticated, userDetails.token]);
 
-  // Check if we are on the `/listing` page and the user is not authenticated
-  const isListingPage = location.pathname === "/listing";
-  const shouldShowLoginButton = isListingPage && !isAuthenticated;
+  // Function to check if the current path is a listing page
+  const isListingPage = () => {
+    const path = location.pathname;
+    return path.startsWith("/listing") || path.includes("/listing/");
+  };
+
+  const shouldShowLoginButton = isListingPage() && !isAuthenticated;
 
   return (
     <>
       <div>
         <Header />
         {shouldShowLoginButton ? (
-          <div>
-            <button onClick={handleLogin}>Login to View Listings</button>
+          <div className="pt-28 pb-10 max-padd-container">
+            <button onClick={handleLogin}>
+              Please Login to View the Listings
+            </button>
           </div>
         ) : (
           <Outlet />
