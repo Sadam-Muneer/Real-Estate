@@ -20,7 +20,7 @@ const agents = [
     experience: "5 years",
     phone: "+923467133632",
     whatsapp: "https://wa.me/923467133632",
-    email: "shahrukhnazarmalik@gmail.com",
+    email: "shahrukhnazar@gmail.com",
     image: shahrukh,
   },
   {
@@ -42,7 +42,7 @@ const agents = [
     experience: "3 years",
     phone: "+923470715406",
     whatsapp: "https://wa.me/923470715406",
-    email: "syedhamzazahoor7@gmail.com",
+    email: "syedhamza@gmail.com",
     image: image2,
   },
   {
@@ -53,7 +53,7 @@ const agents = [
     experience: "4 years",
     phone: "+923044561544",
     whatsapp: "https://wa.me/923044561544",
-    email: "sadammuneer390@gmail.com",
+    email: "sadammunir@gmail.com",
     image: image,
   },
   {
@@ -64,7 +64,7 @@ const agents = [
     experience: "2 years",
     phone: "+923144133994",
     whatsapp: "https://wa.me/923144133994",
-    email: "mudassirnasir875@gmail.com",
+    email: "mudassirnasir@gmail.com",
     image: mudassir,
   },
   {
@@ -75,7 +75,7 @@ const agents = [
     experience: "7 years",
     phone: "+923043265231",
     whatsapp: "https://wa.me/923043265231",
-    email: "nawazsharif@gmail.com",
+    email: "nawaz@gmail.com",
     image: nawaz,
   },
   {
