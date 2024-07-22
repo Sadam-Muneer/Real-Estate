@@ -9,7 +9,7 @@ const UseAuthChck = () => {
   const saveUserDetails = async (user) => {
     try {
       console.log("Sending user details to backend:", user);
-      const response = await axios.post("/api/users/register", {
+      const response = await axios.post("/api/user/register", {
         email: user.email,
         name: user.name,
       });
