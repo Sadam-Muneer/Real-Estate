@@ -16,7 +16,6 @@ const UseAuthChck = () => {
       console.log("User details saved successfully:", response.data);
     } catch (error) {
       console.error("Error saving user details:", error);
-      toast.error("Failed to save user details", { position: "bottom-right" });
     }
   };
 
