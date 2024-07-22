@@ -110,7 +110,7 @@ const Listing = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <div className="flex space-x-4 mt-8">
+        <div className="flex space-x-4 mt-8 ">
           <button
             onClick={() => handleCategoryChange("All")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
@@ -136,50 +136,51 @@ const Listing = () => {
             RENT
           </button>
         </div>
-        <div className="flex mt-8">
-          <div className="mr-4">
+        <div className="flex flex-wrap mt-8">
+          <div className="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
             <h4>City</h4>
             <select
               value={selectedCity}
               onChange={handleCityChange}
-              className="border rounded-md p-2"
+              className="border rounded-md p-2 w-full sm:w-auto"
             >
               <option value="">All Cities</option>
               <option value="Lahore">Lahore</option>
               <option value="Multan">Multan</option>
             </select>
           </div>
-          <div className="flex-shrink-0 mr-4">
+          <div className="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
             <h4>Bedrooms</h4>
             <input
               type="number"
               value={bedrooms}
               onChange={handleBedroomsChange}
-              className="border rounded-md p-2"
+              className="border rounded-md p-2 w-full sm:w-auto"
               placeholder="Any"
             />
           </div>
-          <div className="flex-shrink-0 mr-4">
+          <div className="w-full sm:w-auto mb-4 sm:mb-0 sm:mr-4">
             <h4>Bathrooms</h4>
             <input
               type="number"
               value={bathrooms}
               onChange={handleBathroomsChange}
-              className="border rounded-md p-2"
+              className="border rounded-md p-2 w-full sm:w-auto"
               placeholder="Any"
             />
           </div>
-          <div className="flex-shrink-0 mr-4">
+          <div className="w-full sm:w-auto mb-4 sm:mb-0">
             <h4>Parking</h4>
             <input
               type="number"
               value={parking}
               onChange={handleParkingChange}
-              className="border rounded-md p-2"
+              className="border rounded-md p-2 w-full sm:w-auto"
               placeholder="Any"
             />
           </div>
         </div>
+
         <div>
           <h4>Price Range</h4>
           <Slider
