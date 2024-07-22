@@ -12,7 +12,6 @@ const UseAuthChck = () => {
       const response = await axios.post("/api/users/register", {
         email: user.email,
         name: user.name,
-        // Add any other user details you want to save
       });
       console.log("User details saved successfully:", response.data);
     } catch (error) {

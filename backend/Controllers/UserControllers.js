@@ -1,7 +1,5 @@
 import asyncHandler from "express-async-handler";
 import { prisma } from "../Config/PrismaConfig.js";
-
-// Function to create or update a user
 export const createUser = asyncHandler(async (req, res) => {
   console.log("Received request to create or update user");
   const { email, name } = req.body;
@@ -11,7 +9,6 @@ export const createUser = asyncHandler(async (req, res) => {
     const userExists = await prisma.user.findUnique({ where: { email } });
     if (userExists) {
       console.log("User exists, updating user:", email);
-      // Update existing user
       const updatedUser = await prisma.user.update({
         where: { email },
         data: { name },
@@ -23,7 +20,6 @@ export const createUser = asyncHandler(async (req, res) => {
       });
     } else {
       console.log("User does not exist, creating user:", email);
-      // Create new user
       const newUser = await prisma.user.create({
         data: { email, name },
       });
@@ -42,14 +38,10 @@ export const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-// to book a visit to resident
-
 export const bookVisit = asyncHandler(async (req, res) => {
-  console.log("Request body:", req.body); // Add this line for debugging
+  console.log("Request body:", req.body);
   const { email, date } = req.body;
   const { id } = req.params;
-
-  // Basic validation
   if (!email || !date) {
     return res
       .status(400)
