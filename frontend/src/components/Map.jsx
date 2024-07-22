@@ -9,8 +9,8 @@ const Map = ({ address, city, country }) => {
   return (
     <div>
       <MapContainer
-        center={[0, 0]} // Neutral initial center
-        zoom={2} // Start with a higher zoom level
+        center={[0, 0]}
+        zoom={2}
         scrollWheelZoom={false}
         className="h-[24rem] w-full mt-5 z-0"
       >

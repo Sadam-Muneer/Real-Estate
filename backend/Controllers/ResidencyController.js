@@ -92,21 +92,26 @@ export const getAllResidencies = asyncHandler(async (req, res) => {
   }
 });
 
-// Get a residency by ID
 export const getResidency = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  console.log("Fetching residency with ID:", id);
+
   try {
     const residency = await prisma.residency.findUnique({
       where: { id },
     });
+
     if (residency) {
       res.send(residency);
     } else {
+      console.log("Residency not found:", id);
       res.status(404).json({ message: "Residency not found" });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Internal server error", details: error.message });
+    console.error("Error fetching residency:", error);
+    res.status(500).json({
+      error: "Internal server error",
+      details: error.message,
+    });
   }
 });

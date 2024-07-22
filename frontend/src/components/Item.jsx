@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const Item = ({ property }) => {
-  const { listType, image, title, city, description, price, facilities } =
+  const { listType, image, title, city, description, price, facilities, id } =
     property;
   const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Item = ({ property }) => {
       <div className="flexBetween">
         <div className="bold-20">{price}.00 PKR</div>
         <button
-          onClick={() => navigate(`../listing/{property.id} PKR`)}
+          onClick={() => navigate(`/listing/${id}`)}
           className="btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
         >
           View Details
