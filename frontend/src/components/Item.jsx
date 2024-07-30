@@ -18,7 +18,7 @@ const Item = ({ property }) => {
       </div>
       <div className="flex justify-between items-center">
         <h5 className="bold-16 my-1 text-secondary">{city}</h5>
-        <span className="bold-16 text-gray-500">FOR {listType}</span>
+        <span className="bold-16 text-gray-500">{listType}</span>
       </div>
       <h4 className="medium-18 line-clamp-1">{title}</h4>
       <div className="flex gap-x-2 py-2">

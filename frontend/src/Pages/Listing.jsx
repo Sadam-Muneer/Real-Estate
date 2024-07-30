@@ -102,8 +102,13 @@ const Listing = () => {
             onSearchChange={handleSearchChange}
           />
         </div>
-        <h1 className="pt-5">Following properties are for -: </h1>
-        <div className="flex mt-4 space-x-2">
+        <div className="flex mt-8 space-x-2">
+          <button
+            onClick={() => handleCategoryChange("All")}
+            className="btn-category btn-secondary rounded-xl !py-[7px]  shadow-sm mb-2 sm:mb-0 sm:w-auto w-full px-2 "
+          >
+            All
+          </button>
           <button
             onClick={() => handleCategoryChange("BUY")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full  "
