@@ -26,27 +26,21 @@ const Listing = () => {
       setPriceRange([0, 1000000]); // Reset price range when "All" category is selected
     }
   };
-
   const handleSearchChange = (term) => {
     setSearchTerm(term);
   };
-
   const handleCityChange = (event) => {
     setSelectedCity(event.target.value);
   };
-
   const handleBedroomsChange = (event) => {
     setBedrooms(event.target.value);
   };
-
   const handleBathroomsChange = (event) => {
     setBathrooms(event.target.value);
   };
-
   const handleParkingChange = (event) => {
     setParking(event.target.value);
   };
-
   const handlePriceRangeChange = (newRange) => {
     setPriceRange(newRange);
   };
@@ -59,11 +53,9 @@ const Listing = () => {
       </div>
     );
   }
-
   if (isError) {
     return <div>Error while fetching the data</div>;
   }
-
   const filteredProperties = properties.filter((property) => {
     const matchesCategory =
       category === "All" || property.listType === category;
@@ -121,13 +113,13 @@ const Listing = () => {
             onClick={() => handleCategoryChange("BUY")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full  "
           >
-            BUY
+            SELL
           </button>
           <button
             onClick={() => handleCategoryChange("SELL")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-3 shadow-sm mb-2 sm:mb-0 sm:w-auto w-full "
           >
-            SELL
+            BUY
           </button>
           <button
             onClick={() => handleCategoryChange("RENT")}
