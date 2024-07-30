@@ -60,19 +60,19 @@ const Booking = () => {
             onClick={() => handleCategoryChange("BUY")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            BUY
+            FOR BUY
           </button>
           <button
             onClick={() => handleCategoryChange("SELL")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            SELL
+            FOR SELL
           </button>
           <button
             onClick={() => handleCategoryChange("RENT")}
             className="btn-category btn-secondary rounded-xl !py-[7px] !px-5 shadow-sm"
           >
-            RENT
+            FOR RENT
           </button>
         </div>
         {filteredProperties.length > 0 ? (
